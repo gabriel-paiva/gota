@@ -1,0 +1,58 @@
+.formdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+
+  background-color: #4ABBC1;
+  min-height: 70vh;
+  min-width: 50vw;
+
+  border-radius: 15px;
+}
+
+.formdiv h2 {
+  margin-bottom: 15px;
+}
+
+.formdiv form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  min-height: 350px;
+}
+
+.formdiv button {
+  outline: none;
+  width: 200px;
+  height: 50px;
+  background-color: #4ABBC1;
+  color: #FFF;
+  font-size: 28px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin-top: 30px;
+}
+
+.formdiv button:hover {
+  background-color: #4E8E91;
+}
+
+.formdiv form select, .formdiv form input {
+  width: 170px;
+  height: 45px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #EEE;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+  padding: 10px;
+  margin: 0;
+  text-decoration: none;
+  background-color: #FFF;
+}
