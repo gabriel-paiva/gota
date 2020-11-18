@@ -6,7 +6,7 @@ import styles from '../../styles/Navbar.module.css';
 export default function Navbar() {
   return (
     <header className={styles.navbar}>
-      <Link href="/"><Image className="clicavel" src="/gota.svg" alt="Logo Gota" width={120} height={68.89} /></Link>
+      <Link href="/"><Image className="clicavel" src="/gota-azul.png" alt="Logo Gota" width={120} height={68.89} /></Link>
     </header>
   );
 }

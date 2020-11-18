@@ -1,10 +1,30 @@
-import Head from 'next/head'
+import { useState } from 'react';
 
+import Head from 'next/head'
 import Navbar from '../components/Navbar';
 
 import styles from '../styles/Home.module.css'
 
+import listaDeRegioes from '../utils/listaDeEmpresas.json';
+
 export default function Home() {
+
+  const [regiao, setRegiao] = useState('');
+  const [empresa, setEmpresa] = useState('');
+  const [listaDeEmpresas, setListaDeEmpresas] = useState([]);
+  const [categoria, setCategoria] = useState('');
+  const [consumo, setConsumo] = useState(0);
+
+  async function CalculaTarifa(e) {
+    e.preventDefault();
+  }
+
+  async function criarListaEmpresas(regiaoEscolhida){
+
+    const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
+    setListaDeEmpresas(novaListaDeEmpresas);
+  }
+
   return (
     <>
       <Head>
@@ -18,28 +38,63 @@ export default function Home() {
         <h1>Gerenciador Online de Tarifas de Água</h1>
         <div className={styles.formdiv}>
           <h2>Calculadora de Tarifas de Água</h2>
-          <form>
-            <label htmlFor="regiao">Escolha uma região:</label>
-            <select name="regiao" id="regiao">
-              <option value="DF">Distrito Federal</option>
-              <option value="GO">Goiás</option>
-              <option value="MS">Mato Grosso do Sul</option>
-            </select>
+          <form onSubmit={CalculaTarifa} >
+            <div className={styles.inputdiv} >
+              <label htmlFor="regiao">Região:</label>
+              <select 
+                name="regiao" 
+                id="regiao" 
+                onChange={e => {setRegiao(e.target.value); criarListaEmpresas(e.target.value)}}
+                required 
+              >
+                <option value={''} >Escolha uma região</option>
+                <option value="df">Distrito Federal</option>
+                <option value="go">Goiás</option>
+                <option value="ms">Mato Grosso do Sul</option>
+              </select>
+            </div>
 
-            <label htmlFor="empresa">Escolha uma empresa de saneamento:</label>
-            <select name="empresa" id="empresa">
-              <option value="caesb">CAESB</option>
-              <option value="saneago">SANEAGO</option>
-              <option value="sanesul">SANESUL</option>
-            </select>
+            <div className={styles.inputdiv} >
+              <label htmlFor="empresa">Empresa de saneamento:</label>
+              <select 
+                name="empresa" 
+                id="empresa"
+                onChange={e => setEmpresa(e.target.value)} 
+                required
+              >
+                <option value={''}>Escolha uma empresa de saneamento</option>
+                {listaDeEmpresas.map(empresa => 
+                  <option key={empresa} value={empresa}>{empresa}</option> )}
+              </select>
+            </div>
 
-            <label htmlFor="residencia">Escolha um tipo de residência:</label>
-            <select name="residencia" id="residencia">
-              <option value="padrao">Padrão</option>
-            </select>
+            <div className={styles.inputdiv} >
+              <label htmlFor="categoria">Categoria:</label>
+              <select 
+                name="categoria" 
+                id="categoria"
+                onChange={e=> setCategoria(e.target.value)} 
+                required
+              >
+                <option value={''}>Escolha uma categoria</option>
+                <option value="padrao">Padrão</option>
+              </select>
+            </div>
 
-            <label htmlFor="consumo">Indique seu consumo em m³:</label>
-            <input type="number" id="consumo" name="consumo" min="0" max="999999" />
+            <div className={styles.inputdiv} >
+              <label htmlFor="consumo">Indique seu consumo em m³:</label>
+              <input 
+                type="number" 
+                id="consumo" 
+                name="consumo" 
+                min="0" 
+                max="999999" 
+                placeholder="Consumo em m³" 
+                value={consumo} 
+                onChange={e=> setConsumo(e.target.value)}
+                required 
+              />
+            </div>
 
             <button type="submit" className="clicavel">Calcular</button>
           </form>

@@ -1,8 +1,8 @@
 .navbar {
   min-height: 80px;
-  background-color: #4ABBC1;
+  background-color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  color: #fff;
+  color: #6E9DC9;
 }
