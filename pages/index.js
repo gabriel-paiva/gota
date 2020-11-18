@@ -24,6 +24,7 @@ export default function Home() {
     dadosEmpresa.empresa.map(empresa => arrayDeCategorias.push(Object.values(empresa.categorias)));
     arrayDeCategorias.map(objetoCategoria => objetoCategoria.map(categoria => listaDeCategorias.push(categoria.categoria)));
     // Tendo o array de categorias, precisamos achar o municipio 
+    // Teste para deploy
   }
 
   async function criarListaEmpresas(regiaoEscolhida){
