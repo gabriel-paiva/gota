@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css'
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
+import api from '../services/gotaapi';
 
 export default function Home() {
 
@@ -14,9 +15,15 @@ export default function Home() {
   const [listaDeEmpresas, setListaDeEmpresas] = useState([]);
   const [categoria, setCategoria] = useState('');
   const [consumo, setConsumo] = useState(0);
+  const [dadosEmpresa, setDadosEmpresa] = useState({});
 
-  async function CalculaTarifa(e) {
+  async function calculaTarifa(e) {
     e.preventDefault();
+    const arrayDeCategorias = [];
+    const listaDeCategorias = [];
+    dadosEmpresa.empresa.map(empresa => arrayDeCategorias.push(Object.values(empresa.categorias)));
+    arrayDeCategorias.map(objetoCategoria => objetoCategoria.map(categoria => listaDeCategorias.push(categoria.categoria)));
+    // Tendo o array de categorias, precisamos achar o municipio 
   }
 
   async function criarListaEmpresas(regiaoEscolhida){
@@ -24,6 +31,21 @@ export default function Home() {
     const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
     setListaDeEmpresas(novaListaDeEmpresas);
   }
+
+  async function getDadosDaEmpresa(nomeEmpresa){
+    nomeEmpresa = nomeEmpresa.toLowerCase();
+    let dados;
+
+    console.log(regiao);
+    console.log(nomeEmpresa);
+    
+    await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
+      dados = response.data;
+    });
+
+    setDadosEmpresa(dados);
+  }
+
 
   return (
     <>
@@ -38,7 +60,7 @@ export default function Home() {
         <h1>Gerenciador Online de Tarifas de Água</h1>
         <div className={styles.formdiv}>
           <h2>Calculadora de Tarifas de Água</h2>
-          <form onSubmit={CalculaTarifa} >
+          <form onSubmit={calculaTarifa}>
             <div className={styles.inputdiv} >
               <label htmlFor="regiao">Região:</label>
               <select 
@@ -59,12 +81,12 @@ export default function Home() {
               <select 
                 name="empresa" 
                 id="empresa"
-                onChange={e => setEmpresa(e.target.value)} 
+                onChange={e => {setEmpresa(e.target.value); getDadosDaEmpresa(e.target.value)}} 
                 required
               >
                 <option value={''}>Escolha uma empresa de saneamento</option>
                 {listaDeEmpresas.map(empresa => 
-                  <option key={empresa} value={empresa}>{empresa}</option> )}
+                  <option key={empresa} value={empresa}>{empresa}</option>)}
               </select>
             </div>
 
