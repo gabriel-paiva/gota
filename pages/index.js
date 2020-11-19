@@ -7,6 +7,8 @@ import styles from '../styles/Home.module.css'
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
 import api from '../services/gotaapi';
+import escolheCategoria from '../utils/escolheCategoria';
+import calculaTarifa from '../utils/calculaTarifa';
 
 export default function Home() {
 
@@ -18,11 +20,21 @@ export default function Home() {
   const [municipio, setMunicipio] = useState(['todos']);
   const [listaDeMunicipios, setListaDeMunicipios] = useState(['todos']);
   const [listaDeCategorias, setListaDeCategorias] = useState([]);
+  const [dadosEmpresa, setDadosEmpresa] = useState({});
 
-  let dadosEmpresa = {};
+  let dados = {};
   const [renderMunicipio, setRenderMunicipio] = useState(null)
 
-  async function calculaTarifa(e) {
+  async function trataDados(e) {
+    e.preventDefault();
+    
+    if(listaDeMunicipios[0] === "todos"){
+      const dadosDaCategoria = escolheCategoria(dadosEmpresa.tarifas[0].categorias, categoria);
+      console.log(calculaTarifa(dadosDaCategoria, consumo));
+    }
+    else{
+      //escolher o munipio certo e tal
+    }
 
   }
 
@@ -36,15 +48,16 @@ export default function Home() {
     nomeEmpresa = nomeEmpresa.toLowerCase();
 
     await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
-      dadosEmpresa = response.data;      
+      dados = response.data;      
     });
 
-    setListaDeMunicipios(dadosEmpresa.listaDeMunicipios);
-    handleRenderMunicipio(dadosEmpresa.listaDeMunicipios);
+    setDadosEmpresa(dados);
+    setListaDeMunicipios(dados.listaDeMunicipios);
+    handleRenderMunicipio(dados.listaDeMunicipios);
   }
 
   async function getCategoria() {
-    setListaDeCategorias(dadosEmpresa.listaDeCategorias);
+    setListaDeCategorias(dados.listaDeCategorias);
   }
 
   function handleRenderMunicipio(listaDeMunicipios) {
@@ -83,7 +96,7 @@ export default function Home() {
         <h1>Gerenciador Online de Tarifas de Água</h1>
         <div className={styles.formdiv}>
           <h2>Calculadora de Tarifas de Água</h2>
-          <form onSubmit={calculaTarifa}>
+          <form onSubmit={trataDados}>
             <div className={styles.inputdiv} >
               <label htmlFor="regiao">Região:</label>
               <select
