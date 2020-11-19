@@ -18,6 +18,7 @@ export default function Home() {
   const [dadosEmpresa, setDadosEmpresa] = useState({});
   const [municipio, setMunicipio] = ['todos'];
   const [listaDeMunicipios, setListaDeMunicipios] = useState(['todos']);
+  const [listaDeCategorias, setListaDeCategorias] = useState('');
 
   const [renderMunicipio, setRenderMunicipio] = useState(null)
 
@@ -44,6 +45,15 @@ export default function Home() {
     handleRenderMunicipio(dados.listaDeMunicipios);
   }
 
+  function getCategoria(municipio) {
+    if(!municipio){
+      setListaDeCategorias(dados.listaDeCategorias);
+    }
+    else {
+      
+    }
+  }
+
   function handleRenderMunicipio(listaDeMunicipios) {
     if (listaDeMunicipios[0] !== "todos") {
       setRenderMunicipio(<div className={styles.inputdiv} >
@@ -51,7 +61,7 @@ export default function Home() {
         <select
           name="empresa"
           id="empresa"
-          onChange={e => setMunicipio(e.target.value)}
+          onChange={e => {setMunicipio(e.target.value); getCategoria(e.target.value)}}
           required
         >
           <option value={''}>Escolha um municipio</option>
@@ -62,7 +72,7 @@ export default function Home() {
     }
     else{
       setRenderMunicipio(null);
-      console.log(dadosEmpresa);
+      getCategoria();
     }
   }
 
