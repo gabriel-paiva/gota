@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Head from 'next/head'
 import Navbar from '../components/Navbar';
@@ -15,15 +15,15 @@ export default function Home() {
   const [listaDeEmpresas, setListaDeEmpresas] = useState([]);
   const [categoria, setCategoria] = useState('');
   const [consumo, setConsumo] = useState(0);
-  const [dadosEmpresa, setDadosEmpresa] = useState({});
-  const [municipio, setMunicipio] = ['todos'];
+  const [municipio, setMunicipio] = useState(['todos']);
   const [listaDeMunicipios, setListaDeMunicipios] = useState(['todos']);
-  const [listaDeCategorias, setListaDeCategorias] = useState('');
+  const [listaDeCategorias, setListaDeCategorias] = useState([]);
 
+  let dadosEmpresa = {};
   const [renderMunicipio, setRenderMunicipio] = useState(null)
 
   async function calculaTarifa(e) {
-    
+
   }
 
   async function criarListaEmpresas(regiaoEscolhida) {
@@ -34,24 +34,17 @@ export default function Home() {
 
   async function getDadosDaEmpresa(nomeEmpresa) {
     nomeEmpresa = nomeEmpresa.toLowerCase();
-    let dados;
 
     await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
-      dados = response.data;
+      dadosEmpresa = response.data;      
     });
 
-    setDadosEmpresa(dados);
-    setListaDeMunicipios(dados.listaDeMunicipios);
-    handleRenderMunicipio(dados.listaDeMunicipios);
+    setListaDeMunicipios(dadosEmpresa.listaDeMunicipios);
+    handleRenderMunicipio(dadosEmpresa.listaDeMunicipios);
   }
 
-  function getCategoria(municipio) {
-    if(!municipio){
-      setListaDeCategorias(dados.listaDeCategorias);
-    }
-    else {
-      
-    }
+  async function getCategoria() {
+    setListaDeCategorias(dadosEmpresa.listaDeCategorias);
   }
 
   function handleRenderMunicipio(listaDeMunicipios) {
@@ -61,7 +54,7 @@ export default function Home() {
         <select
           name="empresa"
           id="empresa"
-          onChange={e => {setMunicipio(e.target.value); getCategoria(e.target.value)}}
+          onChange={e => { setMunicipio(e.target.value); getCategoria(e.target.value) }}
           required
         >
           <option value={''}>Escolha um municipio</option>
@@ -70,7 +63,7 @@ export default function Home() {
         </select>
       </div>);
     }
-    else{
+    else {
       setRenderMunicipio(null);
       getCategoria();
     }
@@ -111,7 +104,7 @@ export default function Home() {
               <select
                 name="empresa"
                 id="empresa"
-                onChange={e => { setEmpresa(e.target.value); getDadosDaEmpresa(e.target.value)}}
+                onChange={e => { setEmpresa(e.target.value); getDadosDaEmpresa(e.target.value) }}
                 required
               >
                 <option value={''}>Escolha uma empresa de saneamento</option>
@@ -131,7 +124,8 @@ export default function Home() {
                 required
               >
                 <option value={''}>Escolha uma categoria</option>
-                <option value="padrao">Padrão</option>
+                {listaDeCategorias.map(nomeDaCategoria => 
+                  <option key={nomeDaCategoria} value={nomeDaCategoria}>{nomeDaCategoria}</option> )}
               </select>
             </div>
 
