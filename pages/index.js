@@ -8,6 +8,7 @@ import styles from '../styles/Home.module.css'
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
 import api from '../services/gotaapi';
 import escolheCategoria from '../utils/escolheCategoria';
+import escolheMunicipio from '../utils/escolheMunicipio';
 import calculaTarifa from '../utils/calculaTarifa';
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
   const [listaDeCategorias, setListaDeCategorias] = useState([]);
   const [dadosEmpresa, setDadosEmpresa] = useState({});
 
+  const [resultadoFinal, setResultadoFinal] = useState(0);
+
   let dados = {};
   const [renderMunicipio, setRenderMunicipio] = useState(null)
 
@@ -30,10 +33,12 @@ export default function Home() {
     
     if(listaDeMunicipios[0] === "todos"){
       const dadosDaCategoria = escolheCategoria(dadosEmpresa.tarifas[0].categorias, categoria);
-      console.log(calculaTarifa(dadosDaCategoria, consumo));
+      setResultadoFinal(calculaTarifa(dadosDaCategoria, consumo));
     }
     else{
-      //escolher o munipio certo e tal
+      const dadosDoMunicipio = escolheMunicipio(dadosEmpresa.tarifas, municipio);
+      const dadosDaCategoria = escolheCategoria(dadosDoMunicipio, categoria);
+      setResultadoFinal(calculaTarifa(dadosDaCategoria, consumo));
     }
 
   }
@@ -159,6 +164,7 @@ export default function Home() {
 
             <button type="submit" className="clicavel">Calcular</button>
           </form>
+          {resultadoFinal}
         </div>
       </div>
     </>
