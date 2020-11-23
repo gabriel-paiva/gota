@@ -1,10 +1,12 @@
-export default function CalculaTarifa(dados, consumo) {
-  const { valorFixo } = dados;
-  const { aliquotas } = dados;
+export default function CalculaTarifa(valorFixo, aliquotas, faixasDeConsumo, consumo) {
   const quantidadeDeAliquotas = aliquotas.length;
-  const { faixasDeConsumo } = dados;
   const quantidadeDeFaixas = faixasDeConsumo.length;
   let faixaAtual = 0;
+
+  if(consumo===0){
+    return 0;
+  }
+
 
   function VerificaFaixaAtual() {
     for (let i = 0; i < quantidadeDeFaixas; i += 1) {
@@ -44,6 +46,10 @@ export default function CalculaTarifa(dados, consumo) {
   const precoTotalFaixas = CalculaPrecoTotalFaixas(faixaAtual, precoPorFaixa);
   const valorVariavel = CalculaValorVariavel(faixaAtual, precoTotalFaixas);
   const tarifa = valorFixo + valorVariavel;
+
+  if(tarifa<0){
+    return 0;
+  }
 
   return tarifa;
 }

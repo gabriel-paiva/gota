@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Head from 'next/head'
 import Navbar from '../components/Navbar';
+import Resultado from '../components/Resultado';
 
 import styles from '../styles/Home.module.css'
 
@@ -23,22 +24,51 @@ export default function Home() {
   const [listaDeCategorias, setListaDeCategorias] = useState([]);
   const [dadosEmpresa, setDadosEmpresa] = useState({});
 
-  const [resultadoFinal, setResultadoFinal] = useState(0);
-
   let dados = {};
-  const [renderMunicipio, setRenderMunicipio] = useState(null)
+  const [renderMunicipio, setRenderMunicipio] = useState(null);
+  const [renderResultado, setRenderResultado] = useState(null);
 
   async function trataDados(e) {
     e.preventDefault();
-    
-    if(listaDeMunicipios[0] === "todos"){
+
+    if (listaDeMunicipios[0] === "todos") {
       const dadosDaCategoria = escolheCategoria(dadosEmpresa.tarifas[0].categorias, categoria);
-      setResultadoFinal(calculaTarifa(dadosDaCategoria, consumo));
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        consumo);
+      handleRenderResultado(
+        tarifaAgua,
+        tarifaEsgoto,
+        dadosEmpresa.tarifas[0].ultimaModificacao,
+        dadosEmpresa.tarifas[0].validoAte
+      );
     }
-    else{
+    else {
       const dadosDoMunicipio = escolheMunicipio(dadosEmpresa.tarifas, municipio);
-      const dadosDaCategoria = escolheCategoria(dadosDoMunicipio, categoria);
-      setResultadoFinal(calculaTarifa(dadosDaCategoria, consumo));
+      const dadosDaCategoria = escolheCategoria(dadosDoMunicipio.categorias, categoria);
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        consumo);
+      handleRenderResultado(
+        tarifaAgua,
+        tarifaEsgoto,
+        dadosDoMunicipio.ultimaModificacao,
+        dadosDoMunicipio.validoAte
+      );
     }
 
   }
@@ -53,7 +83,7 @@ export default function Home() {
     nomeEmpresa = nomeEmpresa.toLowerCase();
 
     await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
-      dados = response.data;      
+      dados = response.data;
     });
 
     setDadosEmpresa(dados);
@@ -85,6 +115,17 @@ export default function Home() {
       setRenderMunicipio(null);
       getCategoria();
     }
+  }
+
+  function handleRenderResultado(tarifaAgua, tarifaEsgoto, ultimaModificacao, validoAte) {
+    setRenderResultado(
+      <Resultado
+        precoAgua={tarifaAgua}
+        precoEsgoto={tarifaEsgoto}
+        ultimaModificacao={ultimaModificacao}
+        validoAte={validoAte}
+      />
+    );
   }
 
 
@@ -142,8 +183,8 @@ export default function Home() {
                 required
               >
                 <option value={''}>Escolha uma categoria</option>
-                {listaDeCategorias.map(nomeDaCategoria => 
-                  <option key={nomeDaCategoria} value={nomeDaCategoria}>{nomeDaCategoria}</option> )}
+                {listaDeCategorias.map(nomeDaCategoria =>
+                  <option key={nomeDaCategoria} value={nomeDaCategoria}>{nomeDaCategoria}</option>)}
               </select>
             </div>
 
@@ -164,8 +205,8 @@ export default function Home() {
 
             <button type="submit" className="clicavel">Calcular</button>
           </form>
-          {resultadoFinal}
         </div>
+        {renderResultado}
       </div>
     </>
   );

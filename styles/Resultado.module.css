@@ -1,0 +1,30 @@
+.resultadoDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  background-color: #fff;
+  min-height: 40vh;
+  min-width: 430px;
+
+  border-radius: 10px;
+  border: 2px, solid, #647E97;
+}
+
+@media(max-width: 500px) {
+  .resultadoDiv {
+    min-width: 90vw;
+    max-width: 98vw;
+  }
+}
+
+.resultadoDiv h2 {
+  margin-bottom: 15px;
+  color: #647E97;
+}
