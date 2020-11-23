@@ -126,6 +126,7 @@ export default function Home() {
         validoAte={validoAte}
       />
     );
+    document.getElementById("resultado").scrollIntoView({ behavior: 'smooth' });
   }
 
 
