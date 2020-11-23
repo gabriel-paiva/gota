@@ -74,9 +74,10 @@ export default function Home() {
   }
 
   async function criarListaEmpresas(regiaoEscolhida) {
-
-    const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
-    setListaDeEmpresas(novaListaDeEmpresas);
+    if(regiaoEscolhida){
+      const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
+      setListaDeEmpresas(novaListaDeEmpresas);
+    } 
   }
 
   async function getDadosDaEmpresa(nomeEmpresa) {
