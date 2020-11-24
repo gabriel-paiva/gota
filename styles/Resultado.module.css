@@ -9,12 +9,14 @@
   margin-top: 20px;
   margin-bottom: 20px;
 
+  border-width: 1px;
+  border-style: solid;
+  border-color: #245483;
   background-color: #fff;
   min-height: 40vh;
   min-width: 430px;
 
   border-radius: 10px;
-  border: 2px, solid, #647E97;
 }
 
 @media(max-width: 500px) {
@@ -26,5 +28,5 @@
 
 .resultadoDiv h2 {
   margin-bottom: 15px;
-  color: #647E97;
+  color: #245483;
 }

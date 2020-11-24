@@ -29,7 +29,7 @@
 
 .formdiv h2 {
   margin-bottom: 15px;
-  color: #647E97;
+  color: #245483;
 }
 
 .formdiv form {
@@ -60,7 +60,7 @@
 }
 
 .formdiv button:hover {
-  background-color: #647E97;
+  background-color: #245483;
 }
 
 .formdiv form select, .formdiv form input {
