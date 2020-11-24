@@ -86,7 +86,7 @@ export default function Login() {
                   placeholder="Insira sua senha aqui"
                 />
               </div>
-              <button type="submit">Login</button>
+              <button type="submit" className="clicavel">Login</button>
             </form>
           </div>
 
@@ -128,7 +128,7 @@ export default function Login() {
                   placeholder="Insira sua senha aqui"
                 />
               </div>
-              <button type="submit">Cadastrar</button>
+              <button type="submit" className="clicavel">Cadastrar</button>
             </form>
           </div>
         </div>
