@@ -1,8 +1,60 @@
+import { useState } from 'react';
+import { useRouter } from 'next/router'
+
 import Navbar from '../components/Navbar';
+
+import api from '../services/backendapi';
 
 import styles from '../styles/Login.module.css';
 
 export default function Login() {
+  // Variáveis de cadastro:
+  const [nomeCadastro, setNomeCadastro] = useState('');
+  const [emailCadastro, setEmailCadastro] = useState('');
+  const [senhaCadastro, setSenhaCadastro] = useState('');
+  // Variáveis de Login:
+  const [emailLogin, setEmailLogin] = useState('');
+  const [senhaLogin, setSenhaLogin] = useState('');
+
+  const router = useRouter()
+
+  async function handleCadastro(e){
+    e.preventDefault();
+
+    const data = {
+      name: nomeCadastro,
+      email: emailCadastro,
+      senha: senhaCadastro
+    };
+
+    try {
+      await api.post('/user', data);
+      alert('Usuário cadastrado com sucesso!');
+      router.push('/userpage');
+    }
+    catch(erro){
+      alert(erro.response.data.message);
+    }
+  }
+
+  async function handleLogin(e){
+    e.preventDefault();
+
+    const data = {
+      email: emailLogin,
+      senha: senhaLogin
+    }
+
+    try {
+      await api.post('/login', data);
+      router.push('/userpage');
+    }
+    catch(erro){
+      alert(erro.response.data.message);
+    }
+  }
+
+
   return (
     <>
       <Navbar />
@@ -10,23 +62,27 @@ export default function Login() {
         <div className={styles.formsContainer}>
           <div className={styles.logindiv}>
             <h2>Login</h2>
-            <form>
+            <form onSubmit={handleLogin}>
               <div className={styles.inputdiv}>
-                <label htmlFor="email">Insira seu e-mail:</label>
+                <label htmlFor="emailLogin">Insira seu e-mail:</label>
                 <input
                   type="email"
-                  name="email"
-                  id="email"
+                  name="emailLogin"
+                  id="emailLogin"
+                  value={emailLogin}
+                  onChange={e => setEmailLogin(e.target.value)}
                   placeholder="Insira seu e-mail aqui"
                   required
                 />
               </div>
               <div className={styles.inputdiv}>
-                <label htmlFor="senha">Insira sua senha:</label>
+                <label htmlFor="senhaLogin">Insira sua senha:</label>
                 <input
                   type="password"
-                  name="senha"
-                  id="senha"
+                  name="senhaLogin"
+                  id="senhaLogin"
+                  value={senhaLogin}
+                  onChange={e => setSenhaLogin(e.target.value)}
                   placeholder="Insira sua senha aqui"
                 />
               </div>
@@ -36,13 +92,15 @@ export default function Login() {
 
           <div className={styles.cadastrodiv}>
             <h2>Cadastro</h2>
-            <form>
+            <form onSubmit={handleCadastro} >
             <div className={styles.inputdiv}>
-                <label htmlFor="nome">Insira seu e-mail:</label>
+                <label htmlFor="nome">Insira seu nome:</label>
                 <input
                   type="text"
                   name="nome"
                   id="nome"
+                  value={nomeCadastro}
+                  onChange={e => setNomeCadastro(e.target.value)}
                   placeholder="Insira seu nome aqui"
                   required
                 />
@@ -53,6 +111,8 @@ export default function Login() {
                   type="email"
                   name="email"
                   id="email"
+                  value={emailCadastro}
+                  onChange={e => setEmailCadastro(e.target.value)}
                   placeholder="Insira seu e-mail aqui"
                   required
                 />
@@ -63,6 +123,8 @@ export default function Login() {
                   type="password"
                   name="senha"
                   id="senha"
+                  value={senhaCadastro}
+                  onChange={e => setSenhaCadastro(e.target.value)}
                   placeholder="Insira sua senha aqui"
                 />
               </div>
