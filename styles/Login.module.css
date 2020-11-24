@@ -1,0 +1,38 @@
+.formsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+  width: 100vw;
+
+  text-align: center;
+}
+
+.formsContainer .logindiv, .formsContainer .cadastrodiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  
+  min-height: 70vh;
+  min-width: 430px;
+
+  border-radius: 10px;
+}
+
+.formsContainer .logindiv {
+  background-color: #fff;
+}
+
+.formsContainer .cadastrodiv {
+  background-color: #245483;
+  color: #fff;
+}
