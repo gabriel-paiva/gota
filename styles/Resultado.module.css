@@ -21,8 +21,8 @@
 
 @media(max-width: 500px) {
   .resultadoDiv {
-    min-width: 90vw;
-    max-width: 98vw;
+    width: 90vw;
+    min-width: 330px;
   }
 }
 

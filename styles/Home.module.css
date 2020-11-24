@@ -18,8 +18,8 @@
 
 @media(max-width: 500px) {
   .formdiv {
-    min-width: 90vw;
-    max-width: 98vw;
+    width: 90vw;
+    min-width: 330px;
   }
 
   .formdiv form select, .formdiv form input {

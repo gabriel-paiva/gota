@@ -18,10 +18,10 @@
   align-items: center;
 
   padding: 20px;
-
-  margin-top: 20px;
-  margin-bottom: 20px;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   
   min-height: 70vh;
   width: 430px;
@@ -116,4 +116,16 @@
   background-color: #6E9DC9;
   color: #fff;
   border-color: #fff;
+}
+
+@media(max-width: 450px) {
+  .formsContainer .logindiv, 
+  .formsContainer .cadastrodiv {
+    width: 90vw;
+    min-width: 330px;
+  }
+  .formsContainer .logindiv input, 
+  .formsContainer .cadastrodiv input {
+    width: 80vw;
+  }
 }
