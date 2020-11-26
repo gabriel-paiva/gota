@@ -1,8 +1,20 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
 import styles from '../styles/Profile.module.css';
 
 import Navbar from '../components/Navbar';
 
 export default function Profile() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoged = localStorage.getItem('isLoged');
+    if(!isLoged){
+      router.push('/acessonegado');
+    }
+  }, []);
+
   return (
     <>
       <Navbar />

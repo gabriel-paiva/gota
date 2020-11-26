@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Navbar from '../components/Navbar';
 
@@ -8,6 +9,16 @@ import api from '../services/backendapi';
 import styles from '../styles/Login.module.css';
 
 export default function Login() {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoged = localStorage.getItem('isLoged');
+    if(isLoged){
+      router.push('/');
+    }
+  }, []);
+
   // Variáveis de cadastro:
   const [nomeCadastro, setNomeCadastro] = useState('');
   const [emailCadastro, setEmailCadastro] = useState('');
@@ -15,8 +26,6 @@ export default function Login() {
   // Variáveis de Login:
   const [emailLogin, setEmailLogin] = useState('');
   const [senhaLogin, setSenhaLogin] = useState('');
-
-  const router = useRouter()
 
   async function handleCadastro(e){
     e.preventDefault();

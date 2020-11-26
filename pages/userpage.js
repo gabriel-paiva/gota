@@ -1,8 +1,19 @@
 import styles from '../styles/Userpage.module.css';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Navbar from '../components/Navbar';
 
 export default function Userpage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoged = localStorage.getItem('isLoged');
+    if(!isLoged){
+      router.push('/acessonegado');
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
