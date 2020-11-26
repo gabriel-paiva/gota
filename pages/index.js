@@ -34,12 +34,12 @@ export default function Home() {
     if (listaDeMunicipios[0] === "todos") {
       const dadosDaCategoria = escolheCategoria(dadosEmpresa.tarifas[0].categorias, categoria);
       const tarifaAgua = await calculaTarifa(
-        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.valorFixoAgua,
         dadosDaCategoria.aliquotasAgua,
         dadosDaCategoria.faixasDeConsumo,
         consumo);
       const tarifaEsgoto = await calculaTarifa(
-        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.valorFixoEsgoto,
         dadosDaCategoria.aliquotasEsgoto,
         dadosDaCategoria.faixasDeConsumo,
         consumo);
@@ -54,12 +54,12 @@ export default function Home() {
       const dadosDoMunicipio = escolheMunicipio(dadosEmpresa.tarifas, municipio);
       const dadosDaCategoria = escolheCategoria(dadosDoMunicipio.categorias, categoria);
       const tarifaAgua = await calculaTarifa(
-        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.valorFixoAgua,
         dadosDaCategoria.aliquotasAgua,
         dadosDaCategoria.faixasDeConsumo,
         consumo);
       const tarifaEsgoto = await calculaTarifa(
-        dadosDaCategoria.valorFixo,
+        dadosDaCategoria.valorFixoEsgoto,
         dadosDaCategoria.aliquotasEsgoto,
         dadosDaCategoria.faixasDeConsumo,
         consumo);
