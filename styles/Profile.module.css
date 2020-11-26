@@ -6,11 +6,11 @@
 
   padding: 20px;
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 
   background-color: #fff;
-  min-height: 70vh;
+  min-height: 40vh;
   min-width: 430px;
 
   border-radius: 10px;
@@ -37,8 +37,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-
-  min-height: 350px;
 }
 
 .formdiv form .inputdiv {
@@ -63,7 +61,7 @@
   background-color: #245483;
 }
 
-.formdiv form select, .formdiv form input {
+.formdiv form input {
   min-width: 310px;
   height: 45px;
   outline: none;

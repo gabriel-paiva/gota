@@ -1,0 +1,131 @@
+.formsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+  width: 100vw;
+
+  text-align: center;
+}
+
+.formsContainer .logindiv, 
+.formsContainer .cadastrodiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  
+  min-height: 70vh;
+  width: 430px;
+
+  border-radius: 10px;
+}
+.formsContainer .logindiv form, 
+.formsContainer .cadastrodiv form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 350px;
+}
+
+.formsContainer form .inputdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formsContainer .logindiv {
+  background-color: #fff;
+  color:  #245483;
+}
+
+.formsContainer .cadastrodiv {
+  background-color: #245483;
+  color: #fff;
+}
+
+.formsContainer .logindiv form input {
+  min-width: 310px;
+  height: 45px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #6E9DC9;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  background-color: #FFF;
+}
+
+.formsContainer .logindiv form button {
+  outline: none;
+  width: 200px;
+  height: 50px;
+  background-color: #6E9DC9;
+  color: #FFF;
+  font-size: 28px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  margin-top: 30px;
+}
+
+.formsContainer .logindiv form button:hover {
+  background-color: #245483;
+}
+
+
+
+
+.formsContainer .cadastrodiv form input {
+  min-width: 310px;
+  height: 45px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  background-color: #FFF;
+}
+
+.formsContainer .cadastrodiv form button {
+  outline: none;
+  width: 200px;
+  height: 50px;
+  background-color: #fff;
+  color: #245483;
+  font-size: 28px;
+  border-radius: 10px;
+  border: 2px solid #245483;
+  margin-top: 30px;
+}
+
+.formsContainer .cadastrodiv form button:hover {
+  background-color: #6E9DC9;
+  color: #fff;
+  border-color: #fff;
+}
+
+@media(max-width: 450px) {
+  .formsContainer .logindiv, 
+  .formsContainer .cadastrodiv {
+    width: 90vw;
+    min-width: 330px;
+  }
+  .formsContainer .logindiv input, 
+  .formsContainer .cadastrodiv input {
+    width: 80vw;
+  }
+}
