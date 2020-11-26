@@ -10,9 +10,9 @@ export default function Resultado(props) {
       <br/>
       <br/>
       <h2>Aviso:</h2>
-      <p>Os dados utilizados para esse cálculo foram pegos manualmente no site da empresa.</p>
-      <p>Ultima atualização dos dados: {props.ultimaModificacao}</p>
-      <p>São válidos até: {props.validoAte}</p>
+      <p>Esse cálculo foi feito com base em dados disponibilizados pelas empresas de água e saneamento e coletados manualmente.</p>
+      <p>Ultima atualização: {props.ultimaModificacao}</p>
+      <p>Válidos até: {props.validoAte}</p>
     </div>
   );
 }
