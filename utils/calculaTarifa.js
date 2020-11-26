@@ -3,17 +3,13 @@ export default function CalculaTarifa(valorFixo, aliquotas, faixasDeConsumo, con
   const quantidadeDeFaixas = faixasDeConsumo.length;
   let faixaAtual = 0;
 
-  if(consumo===0){
-    return 0;
-  }
-
 
   function VerificaFaixaAtual() {
     for (let i = 0; i < quantidadeDeFaixas; i += 1) {
       if (i === quantidadeDeFaixas - 1) {
         faixaAtual = i;
         break;
-      } else if (consumo > faixasDeConsumo[i] && consumo <= faixasDeConsumo[i + 1]) {
+      } else if (consumo >= faixasDeConsumo[i] && consumo <= faixasDeConsumo[i + 1]) {
         faixaAtual = i;
         break;
       }
@@ -46,10 +42,6 @@ export default function CalculaTarifa(valorFixo, aliquotas, faixasDeConsumo, con
   const precoTotalFaixas = CalculaPrecoTotalFaixas(faixaAtual, precoPorFaixa);
   const valorVariavel = CalculaValorVariavel(faixaAtual, precoTotalFaixas);
   const tarifa = valorFixo + valorVariavel;
-
-  if(tarifa<0){
-    return 0;
-  }
 
   return tarifa;
 }
