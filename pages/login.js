@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 import Navbar from '../components/Navbar';
 
@@ -21,14 +21,19 @@ export default function Login() {
   async function handleCadastro(e){
     e.preventDefault();
 
-    const data = {
+    const userData = {
       name: nomeCadastro,
       email: emailCadastro,
       senha: senhaCadastro
     };
 
     try {
-      await api.post('/user', data);
+      await api.post('/user', userData).then(response => {
+        localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('userEmail', response.data.email);
+        localStorage.setItem('userName', response.data.name);
+        localStorage.setItem('isLoged', true);
+      });
       alert('Usuário cadastrado com sucesso!');
       router.push('/userpage');
     }
@@ -40,13 +45,18 @@ export default function Login() {
   async function handleLogin(e){
     e.preventDefault();
 
-    const data = {
+    const userData = {
       email: emailLogin,
       senha: senhaLogin
     }
 
     try {
-      await api.post('/login', data);
+      await api.post('/login', userData).then(response => {
+        localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('userEmail', response.data.email);
+        localStorage.setItem('userName', response.data.name);
+        localStorage.setItem('isLoged', true);
+      });
       router.push('/userpage');
     }
     catch(erro){
