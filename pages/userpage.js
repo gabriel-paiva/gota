@@ -10,7 +10,7 @@ export default function Userpage() {
   useEffect(() => {
     const isLoged = localStorage.getItem('isLoged');
     if(!isLoged){
-      router.push('/acessonegado');
+      router.push('/login');
     }
   }, []);
 
