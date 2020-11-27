@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 import { User, LogIn, LogOut, Settings, PlusSquare } from 'react-feather';
 
@@ -8,14 +9,16 @@ import { User, LogIn, LogOut, Settings, PlusSquare } from 'react-feather';
 import styles from '../../styles/Navbar.module.css';
 
 export default function Navbar() {
+  const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [isLoged, setIsLoged] = useState(false);
 
-  const router = useRouter()
-
-  let isLoged = false
-
-  if (typeof window !== 'undefined') {
-    isLoged = localStorage.getItem('isLoged');
-  }
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLoged(localStorage.getItem('isLoged'));
+      setUsername(localStorage.getItem('userName'));
+    }
+  }, [username, isLoged]);
 
   function handleLogout(){
     localStorage.clear();
@@ -29,6 +32,8 @@ export default function Navbar() {
           <Image className="clicavel" src="/gota-azul.png" alt="Logo Gota" width={120} height={68.89} />
         </a>
       </Link>
+      {isLoged &&
+      <p>Olá, {username}!</p>}
       {isLoged &&
         <Link href="/userpage">
           <a>
