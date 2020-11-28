@@ -34,23 +34,23 @@ export default function Userpage() {
 
   useEffect(() => {
     const isLoged = localStorage.getItem('isLoged');
-    if(!isLoged){
+    if (!isLoged) {
       router.push('/login');
     }
   }, []);
 
-  useEffect(()=>{
-    const headers = { 'Authorization': `${localStorage.getItem('userId')}`};
+  useEffect(() => {
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}` };
 
-    apiContas.get('profile/bills', {headers}).then(response => {
+    apiContas.get('profile/bills', { headers }).then(response => {
       setContasSalvas(response.data);
     });
   }, [contasSalvas]);
   async function criarListaEmpresas(regiaoEscolhida) {
-    if(regiaoEscolhida){
+    if (regiaoEscolhida) {
       const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
       setListaDeEmpresas(novaListaDeEmpresas);
-    } 
+    }
   }
 
   async function getDadosDaEmpresa(nomeEmpresa) {
@@ -104,10 +104,10 @@ export default function Userpage() {
       municipio
     }
 
-    const headers = { 'Authorization': `${localStorage.getItem('userId')}`};
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}` };
 
     try {
-      await apiContas.post('profile/new_bill', dados, {headers});
+      await apiContas.post('profile/new_bill', dados, { headers });
       alert("Conta cadastrada com sucesso!")
     }
     catch (erro) {
@@ -131,7 +131,7 @@ export default function Userpage() {
                 name="data"
                 id="data"
                 value={data}
-                onChange={e=> setData(e.target.value)}
+                onChange={e => setData(e.target.value)}
                 placeholder="Insira a data da sua conta"
                 required
                 autoFocus
@@ -148,7 +148,7 @@ export default function Userpage() {
                 min="0.00"
                 max="999999"
                 value={valor}
-                onChange={e=>setValor(e.target.value)}
+                onChange={e => setValor(e.target.value)}
                 placeholder="Insira o valor da sua conta"
                 required
               />
@@ -235,27 +235,34 @@ export default function Userpage() {
 
         <div className={styles.formdiv}>
           <h2>Contas salvas</h2>
-          {contasSalvas.map(contaSalva => {
-            let mostraMunicipio;
-            if (contaSalva.municipio === 'todos') {
-              mostraMunicipio = null;
-            }
-            else{
-              mostraMunicipio = <p>Municipio: {contaSalva.municipio}</p>
-            }
-            return (
-              <div className={styles.showdiv}>
-                <p>Data: {contaSalva.data}</p>
-                <p>Valor: R$ {contaSalva.valor}</p>
-                <p>Consumo: {contaSalva.consumo} m³</p>
-                <p>Região: {contaSalva.regiao}</p>
-                <p>Empresa: {contaSalva.empresa}</p>
-                {mostraMunicipio}
-                <p>Categoria: {contaSalva.categoria}</p>
-                <p>Status: {contaSalva.status ? 'Pago' : 'Pendente'}</p>
-              </div>
-            );
-          })}
+          <table border="1">
+            <tr>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Consumo</th>
+              <th>Região</th>
+              <th>Empresa</th>
+              <th>Municipio</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th>#</th>
+            </tr>
+            {contasSalvas.map(contaSalva => {
+              return (
+                <tr>
+                  <td>{contaSalva.data}</td>
+                  <td>R$ {contaSalva.valor}</td>
+                  <td>{contaSalva.consumo} m³</td>
+                  <td>{contaSalva.regiao.toUpperCase()}</td>
+                  <td>{contaSalva.empresa}</td>
+                  <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
+                  <td>{contaSalva.categoria}</td>
+                  <td>{contaSalva.status ? 'Pago' : 'Pendente'}</td>
+                  <td>X</td>
+                </tr>
+              );
+            })}
+          </table>
         </div>
 
         <div className={styles.formdiv}>
