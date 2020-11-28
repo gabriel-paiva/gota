@@ -258,7 +258,7 @@ export default function Userpage() {
                   <td>{contaSalva.empresa}</td>
                   <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
                   <td>{contaSalva.categoria}</td>
-                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit color="#6E9DC9" size={24} className="clicavel" /></td>
+                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit color="#6E9DC9" size={18} className="clicavel" /></td>
                   <td><X color="#A60000" size={24} className="clicavel" /></td>
                 </tr>
               );
