@@ -1,5 +1,6 @@
 .navbar {
   min-height: 80px;
+  min-width: 330px;
   background-color: #fff;
   display: flex;
   justify-content: space-around;
