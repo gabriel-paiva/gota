@@ -10,7 +10,7 @@
   margin-bottom: 20px;
 
   background-color: #fff;
-  min-height: 70vh;
+  /* min-height: 70vh; */
   min-width: 50vw;
 
   border-radius: 10px;
@@ -99,9 +99,24 @@
   background-color: #FFF;
 }
 
-.showdiv {
-  border: 1px solid #6E9DC9;
+.table {
+  width: 100%;
+  border: 2px solid #245483;
   border-radius: 10px;
-  padding: 5px;
-  margin: 10px;
+  text-align: center;
+  background-color: #6E9DC9;
+}
+
+.table tr, .table th, .table td {
+  border: none;
+  padding: 10px;
+}
+
+.table td{
+  background-color: #FFF;
+  border-radius: 10px;
+}
+
+.table th {
+  color: #FFF;
 }
