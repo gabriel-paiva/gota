@@ -11,12 +11,34 @@
 
   background-color: #fff;
   min-height: 70vh;
-  min-width: 430px;
+  min-width: 50vw;
 
   border-radius: 10px;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 950px) {
+  .formdiv {
+    width: 70vw;
+    min-width: 330px;
+  }
+
+  .formdiv form select, .formdiv form input {
+    min-width: 60vw;
+  }
+}
+
+@media(max-width: 850px) {
+  .formdiv {
+    width: 80vw;
+    min-width: 330px;
+  }
+
+  .formdiv form select, .formdiv form input {
+    min-width: 70vw;
+  }
+}
+
+@media(max-width: 650px) {
   .formdiv {
     width: 90vw;
     min-width: 330px;
