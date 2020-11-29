@@ -103,6 +103,7 @@ export default function Login() {
                   value={senhaLogin}
                   onChange={e => setSenhaLogin(e.target.value)}
                   placeholder="Insira sua senha aqui"
+                  required
                 />
               </div>
               <button type="submit" className="clicavel">Login</button>
@@ -145,6 +146,7 @@ export default function Login() {
                   value={senhaCadastro}
                   onChange={e => setSenhaCadastro(e.target.value)}
                   placeholder="Insira sua senha aqui"
+                  required
                 />
               </div>
               <button type="submit" className="clicavel">Cadastrar</button>
