@@ -101,8 +101,8 @@
 
 .table {
   width: 100%;
-  border: 2px solid #245483;
-  border-radius: 10px;
+  border: 2px solid #6E9DC9;
+  border-radius: 5px;
   text-align: center;
   background-color: #6E9DC9;
 }
@@ -114,7 +114,6 @@
 
 .table td{
   background-color: #FFF;
-  border-radius: 10px;
 }
 
 .table th {
