@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { User, LogIn, LogOut, Settings, PlusSquare } from 'react-feather';
+import { User, LogIn, LogOut, Settings, Percent } from 'react-feather';
 
 
 import styles from '../../styles/Navbar.module.css';
@@ -20,7 +20,7 @@ export default function Navbar() {
     }
   }, [username, isLoged]);
 
-  function handleLogout(){
+  function handleLogout() {
     localStorage.clear();
     router.push('/');
   }
@@ -33,7 +33,12 @@ export default function Navbar() {
         </a>
       </Link>
       {isLoged &&
-      <p>Olá, {username}!</p>}
+        <p>Olá, {username}!</p>}
+      <Link href="/">
+        <a>
+          <Percent color="#6E9DC9" size={24} />
+        </a>
+      </Link>
       {isLoged &&
         <Link href="/userpage">
           <a>
@@ -46,11 +51,6 @@ export default function Navbar() {
             <Settings color="#6E9DC9" size={24} />
           </a>
         </Link>}
-      {/* <Link href="/">
-        <a>
-          <PlusSquare color="#6E9DC9" size={24} />
-        </a>
-      </Link> */}
       {!isLoged &&
         <Link href="/login">
           <a>
