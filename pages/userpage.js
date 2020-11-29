@@ -3,13 +3,14 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { X, Edit } from 'react-feather';
 
+
 import Navbar from '../components/Navbar';
 
 import apiAgua from '../services/gotaapi';
 import apiContas from '../services/backendapi';
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
-import api from '../services/gotaapi';
+import transformDate from '../utils/transformDate';
 
 export default function Userpage() {
   const router = useRouter();
@@ -32,9 +33,9 @@ export default function Userpage() {
 
   let dados = {};
 
-  const [renderMunicipio, setRenderMunicipio] = useState(null);
+    const [renderMunicipio, setRenderMunicipio] = useState(null);
 
-  useEffect(() => {
+    useEffect(() => {
     const isLoged = localStorage.getItem('isLoged');
     if (!isLoged) {
       router.push('/login');
@@ -115,14 +116,6 @@ export default function Userpage() {
     catch (erro) {
       alert(erro.response.data.message);
     }
-  }
-
-  function transformDate(stringToTransform) {
-    let arrayOfStrings = stringToTransform.split("T");
-    let date = arrayOfStrings[0].split("-");
-    date = date.reverse()
-    let string = date[0] + "/" + date[1] + "/" + date[2];
-    return (string)
   }
 
   async function handleUpdateStatus(status, id) {
