@@ -9,6 +9,7 @@ import apiAgua from '../services/gotaapi';
 import apiContas from '../services/backendapi';
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
+import api from '../services/gotaapi';
 
 export default function Userpage() {
   const router = useRouter();
@@ -116,11 +117,79 @@ export default function Userpage() {
     }
   }
 
+  function transformDate(stringToTransform) {
+    let arrayOfStrings = stringToTransform.split("T");
+    let date = arrayOfStrings[0].split("-");
+    date = date.reverse()
+    let string = date[0] + "/" + date[1] + "/" + date[2];
+    return (string)
+  }
+
+  async function handleUpdateStatus(status, id) {
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}`, 'id': id };
+
+    const newStatus = !status;
+
+    try {
+      await apiContas.put('/profile/update_bill', { newStatus }, { headers });
+      alert("Status alterado com sucesso!")
+    }
+    catch (erro) {
+      alert(erro.response.data.message);
+    }
+  }
+
+  async function handleDeleteBill(id) {
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}`, 'id': id };
+
+    try {
+      await apiContas.delete('/profile/delete_bill', { headers });
+      alert("Conta deletada com sucesso!")
+    }
+    catch (erro) {
+      alert(erro.response.data.message);
+    }
+  }
+
   return (
     <>
       <Navbar />
       <div className="container">
         <h1>Central do Usuário</h1>
+
+        <div className={styles.formdiv}>
+          <h2>Contas salvas</h2>
+          <table border="1" className={styles.table}>
+            <tr>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Consumo</th>
+              <th>Região</th>
+              <th>Empresa</th>
+              <th>Municipio</th>
+              <th>Categoria</th>
+              <th>Status</th>
+              <th>#</th>
+            </tr>
+            {contasSalvas.map(contaSalva => {
+              const dataFormatada = transformDate(contaSalva.data);
+
+              return (
+                <tr key={contaSalva.id}>
+                  <td>{dataFormatada}</td>
+                  <td>R$ {contaSalva.valor}</td>
+                  <td>{contaSalva.consumo} m³</td>
+                  <td>{contaSalva.regiao.toUpperCase()}</td>
+                  <td>{contaSalva.empresa}</td>
+                  <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
+                  <td>{contaSalva.categoria}</td>
+                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit onClick={e => handleUpdateStatus(contaSalva.status, contaSalva.id)} color="#6E9DC9" size={18} className="clicavel" /></td>
+                  <td><X color="#A60000" size={24} className="clicavel" onClick={e => handleDeleteBill(contaSalva.id)} /></td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
 
         <div className={styles.formdiv}>
           <h2>Cadastrar conta</h2>
@@ -233,43 +302,6 @@ export default function Userpage() {
             <button type="submit" className="clicavel">Salvar</button>
           </form>
         </div>
-
-        <div className={styles.formdiv}>
-          <h2>Contas salvas</h2>
-          <table border="1" className={styles.table}>
-            <tr>
-              <th>Data</th>
-              <th>Valor</th>
-              <th>Consumo</th>
-              <th>Região</th>
-              <th>Empresa</th>
-              <th>Municipio</th>
-              <th>Categoria</th>
-              <th>Status</th>
-              <th>#</th>
-            </tr>
-            {contasSalvas.map(contaSalva => {
-              return (
-                <tr>
-                  <td>{contaSalva.data}</td>
-                  <td>R$ {contaSalva.valor}</td>
-                  <td>{contaSalva.consumo} m³</td>
-                  <td>{contaSalva.regiao.toUpperCase()}</td>
-                  <td>{contaSalva.empresa}</td>
-                  <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
-                  <td>{contaSalva.categoria}</td>
-                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit color="#6E9DC9" size={18} className="clicavel" /></td>
-                  <td><X color="#A60000" size={24} className="clicavel" /></td>
-                </tr>
-              );
-            })}
-          </table>
-        </div>
-
-        <div className={styles.formdiv}>
-          <h2>Relatórios</h2>
-        </div>
-
       </div>
     </>
   );
