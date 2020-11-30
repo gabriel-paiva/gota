@@ -1,7 +1,7 @@
 import styles from '../styles/Userpage.module.css';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { X, Edit } from 'react-feather';
+import { X, Edit, Repeat } from 'react-feather';
 
 
 import Navbar from '../components/Navbar';
@@ -11,6 +11,10 @@ import apiContas from '../services/backendapi';
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
 import transformDate from '../utils/transformDate';
+
+import escolheMunicipio from '../utils/escolheMunicipio';
+import escolheCategoria from '../utils/escolheCategoria';
+import calculaTarifa from '../utils/calculaTarifa';
 
 export default function Userpage() {
   const router = useRouter();
@@ -49,6 +53,7 @@ export default function Userpage() {
       setContasSalvas(response.data);
     });
   }, [contasSalvas]);
+
   async function criarListaEmpresas(regiaoEscolhida) {
     if (regiaoEscolhida) {
       const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
@@ -148,6 +153,56 @@ export default function Userpage() {
     router.push('/chart');
   }
 
+  async function handleRecalcular(contaSalva){
+    let dadosAtualizados;
+
+    await apiAgua.get(`${contaSalva.regiao.toLowerCase()}/${contaSalva.empresa.toLowerCase()}`).then(response => {
+      dadosAtualizados = response.data;
+    });
+    
+    if (contaSalva.municipio === "todos") {
+      const dadosDaCategoria = escolheCategoria(dadosAtualizados.tarifas[0].categorias, contaSalva.categoria);
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixoAgua,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixoEsgoto,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
+      // handleRenderResultado(
+      //   tarifaAgua,
+      //   tarifaEsgoto,
+      //   dadosEmpresa.tarifas[0].ultimaModificacao,
+      //   dadosEmpresa.tarifas[0].validoAte
+      // );
+    }
+    else {
+      const dadosDoMunicipio = escolheMunicipio(dadosAtualizados.tarifas, contaSalva.municipio);
+      const dadosDaCategoria = escolheCategoria(dadosDoMunicipio.categorias, contaSalva.categoria);
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixoAgua,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixoEsgoto,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+        alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
+    //   handleRenderResultado(
+    //     tarifaAgua,
+    //     tarifaEsgoto,
+    //     dadosDoMunicipio.ultimaModificacao,
+    //     dadosDoMunicipio.validoAte
+    //   );
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -174,7 +229,7 @@ export default function Userpage() {
               return (
                 <tr key={contaSalva.id}>
                   <td>{dataFormatada}</td>
-                  <td>R$ {contaSalva.valor}</td>
+                  <td>R$ {contaSalva.valor} <Repeat onClick={e => handleRecalcular(contaSalva)} color="#6E9DC9" size={18} className="clicavel" /></td>
                   <td>{contaSalva.consumo} m³</td>
                   <td>{contaSalva.regiao.toUpperCase()}</td>
                   <td>{contaSalva.empresa}</td>
