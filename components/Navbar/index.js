@@ -42,19 +42,19 @@ export default function Navbar() {
           <Percent color="#6E9DC9" size={24} />
         </a>
       </Link>}
-      {isLoged &&
+      {isLoged && (currentRoute !== '/userpage') &&
         <Link href="/userpage">
           <a>
             <User color="#6E9DC9" size={24} />
           </a>
         </Link>}
-      {isLoged &&
+      {isLoged && (currentRoute !== '/profile') &&
         <Link href="/profile">
           <a>
             <Settings color="#6E9DC9" size={24} />
           </a>
         </Link>}
-      {!isLoged &&
+      {!isLoged && (currentRoute !== '/login') &&
         <Link href="/login">
           <a>
             <LogIn color="#6E9DC9" size={24} />
