@@ -173,12 +173,6 @@ export default function Userpage() {
         dadosDaCategoria.faixasDeConsumo,
         contaSalva.consumo);
       alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
-      // handleRenderResultado(
-      //   tarifaAgua,
-      //   tarifaEsgoto,
-      //   dadosEmpresa.tarifas[0].ultimaModificacao,
-      //   dadosEmpresa.tarifas[0].validoAte
-      // );
     }
     else {
       const dadosDoMunicipio = escolheMunicipio(dadosAtualizados.tarifas, contaSalva.municipio);
@@ -194,12 +188,6 @@ export default function Userpage() {
         dadosDaCategoria.faixasDeConsumo,
         contaSalva.consumo);
         alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
-    //   handleRenderResultado(
-    //     tarifaAgua,
-    //     tarifaEsgoto,
-    //     dadosDoMunicipio.ultimaModificacao,
-    //     dadosDoMunicipio.validoAte
-    //   );
     }
   }
 
