@@ -11,12 +11,14 @@ import styles from '../../styles/Navbar.module.css';
 export default function Navbar() {
   const router = useRouter();
   const [username, setUsername] = useState('');
+  const [currentRoute, setCurrentRoute] = useState('');
   const [isLoged, setIsLoged] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsLoged(localStorage.getItem('isLoged'));
       setUsername(localStorage.getItem('userName'));
+      setCurrentRoute(window.location.pathname);
     }
   }, [username, isLoged]);
 
@@ -34,11 +36,12 @@ export default function Navbar() {
       </Link>
       {isLoged &&
         <p>Olá, {username}!</p>}
-      <Link href="/">
+      {currentRoute !== '/' &&
+        <Link href="/">
         <a>
           <Percent color="#6E9DC9" size={24} />
         </a>
-      </Link>
+      </Link>}
       {isLoged &&
         <Link href="/userpage">
           <a>
