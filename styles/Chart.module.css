@@ -32,7 +32,7 @@
     min-width: 330px;
   }
 
-  .formdiv form input {
+  .formdiv form input, .formdiv form select {
     min-width: 70vw;
   }
 }
@@ -84,7 +84,7 @@
   background-color: #245483;
 }
 
-.formdiv form input {
+.formdiv form input, .formdiv form select {
   min-width: 310px;
   height: 45px;
   outline: none;

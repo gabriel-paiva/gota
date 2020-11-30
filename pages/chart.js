@@ -13,6 +13,7 @@ export default function Chart() {
   const [dataFinal, setDataFinal] = useState('');
 
   const [renderGrafico, setRenderGrafico] = useState(null);
+  const [tipoGrafico, setTipoGrafico] = useState('');
 
   useEffect(() => {
     const headers = { 'Authorization': `${localStorage.getItem('userId')}` };
@@ -25,33 +26,38 @@ export default function Chart() {
   function handleGerarGrafico(e) {
     e.preventDefault();
 
-    let todosConsumos = [];
+    let todosY = [];
     let datasFormatadas = [];
     let todosDados = [];
 
     for (let conta of contasSalvas) {
       if (checaDataEntre(dataInicial, dataFinal, conta.data)) {
-        todosDados.push({ data: conta.data, consumo: conta.consumo });
+        todosDados.push({ data: conta.data, consumo: conta.consumo, valor: conta.valor });
       }
     }
     todosDados.sort((a, b) => (a.data > b.data) ? 1 : ((b.data > a.data) ? -1 : 0));
 
     for (let dado of todosDados) {
       datasFormatadas.push(transformDate(dado.data));
-      todosConsumos.push(dado.consumo);
+      if(tipoGrafico === 'Consumo (m³)'){
+        todosY.push(dado.consumo);
+      }
+      else{
+        todosY.push(dado.valor);
+      }
     }
 
     const dadosGrafico = {
       labels: datasFormatadas,
       datasets: [
         {
-          label: 'Consumo',
+          label: tipoGrafico,
           backgroundColor: '#6E9DC9',
           borderColor: '#245483',
           borderWidth: 1,
           hoverBackgroundColor: '#245483',
           hoverBorderColor: '#245483',
-          data: todosConsumos
+          data: todosY
         }
       ]
     };
@@ -61,7 +67,7 @@ export default function Chart() {
   function handleRenderGrafico(dadosGrafico) {
     setRenderGrafico(
       <div className={styles.chartdiv}>
-        <Grafico dadosGrafico={dadosGrafico}/>
+        <Grafico dadosGrafico={dadosGrafico} />
       </div>
     );
   }
@@ -84,6 +90,7 @@ export default function Chart() {
                 required
               />
             </div>
+
             <div className={styles.inputdiv}>
               <label htmlFor="final">Data final</label>
               <input
@@ -95,10 +102,25 @@ export default function Chart() {
                 required
               />
             </div>
+
+            <div className={styles.inputdiv}>
+              <label htmlFor="tipo">Tipo de Gráfico</label>
+              <select
+                name="tipo"
+                id="tipo"
+                onChange={e => setTipoGrafico(e.target.value)}
+                required
+              >
+                <option value={''} >Escolha um tipo de Gráfico</option>
+                <option value="Consumo (m³)">Consumo (m³)</option>
+                <option value="Valor (R$)">Valor (R$)</option>
+              </select>
+            </div>
+
             <button onClick={handleGerarGrafico} type="submit" className="clicavel">Gerar gráfico</button>
           </form>
         </div>
-          {renderGrafico}
+        {renderGrafico}
       </div>
     </>
   );
