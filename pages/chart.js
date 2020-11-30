@@ -12,8 +12,7 @@ export default function Chart() {
   const [dataInicial, setDataInicial] = useState('');
   const [dataFinal, setDataFinal] = useState('');
 
-  const [listaDeDatas, setListaDeDatas] = useState([]);
-  const [listaDeConsumos, setListaDeConsumos] = useState([]);
+  const [renderGrafico, setRenderGrafico] = useState(null);
 
   useEffect(() => {
     const headers = { 'Authorization': `${localStorage.getItem('userId')}` };
@@ -41,23 +40,30 @@ export default function Chart() {
       datasFormatadas.push(transformDate(dado.data));
       todosConsumos.push(dado.consumo);
     }
-    setListaDeDatas(datasFormatadas);
-    setListaDeConsumos(todosConsumos);
+
+    const dadosGrafico = {
+      labels: datasFormatadas,
+      datasets: [
+        {
+          label: 'Consumo',
+          backgroundColor: '#6E9DC9',
+          borderColor: '#245483',
+          borderWidth: 1,
+          hoverBackgroundColor: '#245483',
+          hoverBorderColor: '#245483',
+          data: todosConsumos
+        }
+      ]
+    };
+    handleRenderGrafico(dadosGrafico);
   }
 
-  const dadosGrafico = {
-    labels: listaDeDatas,
-    datasets: [
-      {
-        label: 'Consumo',
-        backgroundColor: '#6E9DC9',
-        borderColor: '#245483',
-        borderWidth: 1,
-        hoverBackgroundColor: '#245483',
-        hoverBorderColor: '#245483',
-        data: listaDeConsumos
-      }
-    ]
+  function handleRenderGrafico(dadosGrafico) {
+    setRenderGrafico(
+      <div className={styles.chartdiv}>
+        <Grafico dadosGrafico={dadosGrafico}/>
+      </div>
+    );
   }
 
   return (
@@ -92,9 +98,7 @@ export default function Chart() {
             <button onClick={handleGerarGrafico} type="submit" className="clicavel">Gerar gráfico</button>
           </form>
         </div>
-        <div className={styles.chartdiv}>
-          <Grafico dadosGrafico={dadosGrafico} />
-        </div>
+          {renderGrafico}
       </div>
     </>
   );
