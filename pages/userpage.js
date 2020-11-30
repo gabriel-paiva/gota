@@ -144,6 +144,10 @@ export default function Userpage() {
     }
   }
 
+  function handleGerarGrafico(){
+    router.push('/chart');
+  }
+
   return (
     <>
       <Navbar />
@@ -182,6 +186,20 @@ export default function Userpage() {
               );
             })}
           </table>
+          <button 
+            type="button" 
+            className="clicavel"
+          >
+            Gerar Relatório
+          </button>
+
+          <button 
+            onClick={handleGerarGrafico} 
+            type="button" 
+            className="clicavel"
+          >
+            Gerar Gráfico
+          </button>
         </div>
 
         <div className={styles.formdiv}>
@@ -291,10 +309,10 @@ export default function Userpage() {
                   <option key={nomeDaCategoria} value={nomeDaCategoria}>{nomeDaCategoria}</option>)}
               </select>
             </div>
-
             <button type="submit" className="clicavel">Salvar</button>
           </form>
         </div>
+
       </div>
     </>
   );
