@@ -7,3 +7,10 @@
   align-items: center;
   color: #6E9DC9;
 }
+
+.navbar button {
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: none;
+}

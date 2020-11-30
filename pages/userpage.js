@@ -217,14 +217,14 @@ export default function Userpage() {
               return (
                 <tr key={contaSalva.id}>
                   <td>{dataFormatada}</td>
-                  <td>R$ {contaSalva.valor} <Repeat onClick={e => handleRecalcular(contaSalva)} color="#6E9DC9" size={18} className="clicavel" /></td>
+                  <td>R$ {contaSalva.valor} <div className="tooltip"><Repeat onClick={e => handleRecalcular(contaSalva)} color="#6E9DC9" size={18} className="clicavel" /><span className="tooltiptext">Recalcular</span></div></td>
                   <td>{contaSalva.consumo} m³</td>
                   <td>{contaSalva.regiao.toUpperCase()}</td>
                   <td>{contaSalva.empresa}</td>
                   <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
                   <td>{contaSalva.categoria}</td>
-                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit onClick={e => handleUpdateStatus(contaSalva.status, contaSalva.id)} color="#6E9DC9" size={18} className="clicavel" /></td>
-                  <td><X color="#A60000" size={24} className="clicavel" onClick={e => handleDeleteBill(contaSalva.id)} /></td>
+                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<div className="tooltip"><Edit onClick={e => handleUpdateStatus(contaSalva.status, contaSalva.id)} color="#6E9DC9" size={18} className="clicavel" /><span className="tooltiptext">Alterar status</span></div></td>
+                  <td ><div className="tooltip"><X color="#A60000" size={24} className="clicavel" onClick={e => handleDeleteBill(contaSalva.id)} /><span className="tooltiptext">Excluir conta</span></div></td>
                 </tr>
               );
             })}
