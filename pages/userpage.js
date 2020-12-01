@@ -245,7 +245,7 @@ export default function Userpage() {
               Gerar Gráfico
           </button>
           </div>
-        </div>
+        </div>        
 
         <div className={styles.formdiv}>
           <h2>Cadastrar conta</h2>
