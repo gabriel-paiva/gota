@@ -37,9 +37,9 @@ export default function Userpage() {
 
   let dados = {};
 
-    const [renderMunicipio, setRenderMunicipio] = useState(null);
+  const [renderMunicipio, setRenderMunicipio] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     const isLoged = localStorage.getItem('isLoged');
     if (!isLoged) {
       router.push('/login');
@@ -149,17 +149,17 @@ export default function Userpage() {
     }
   }
 
-  function handleGerarGrafico(){
+  function handleGerarGrafico() {
     router.push('/chart');
   }
 
-  async function handleRecalcular(contaSalva){
+  async function handleRecalcular(contaSalva) {
     let dadosAtualizados;
 
     await apiAgua.get(`${contaSalva.regiao.toLowerCase()}/${contaSalva.empresa.toLowerCase()}`).then(response => {
       dadosAtualizados = response.data;
     });
-    
+
     if (contaSalva.municipio === "todos") {
       const dadosDaCategoria = escolheCategoria(dadosAtualizados.tarifas[0].categorias, contaSalva.categoria);
       const tarifaAgua = await calculaTarifa(
@@ -187,7 +187,7 @@ export default function Userpage() {
         dadosDaCategoria.aliquotasEsgoto,
         dadosDaCategoria.faixasDeConsumo,
         contaSalva.consumo);
-        alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
+      alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
     }
   }
 
@@ -229,20 +229,22 @@ export default function Userpage() {
               );
             })}
           </table>
-          <button 
-            type="button" 
-            className="clicavel"
-          >
-            Gerar Relatório
+          <div className={styles.buttonflex}>
+            <button
+              type="button"
+              className="clicavel"
+            >
+              Gerar Relatório
           </button>
 
-          <button 
-            onClick={handleGerarGrafico} 
-            type="button" 
-            className="clicavel"
-          >
-            Gerar Gráfico
+            <button
+              onClick={handleGerarGrafico}
+              type="button"
+              className="clicavel"
+            >
+              Gerar Gráfico
           </button>
+          </div>
         </div>
 
         <div className={styles.formdiv}>
