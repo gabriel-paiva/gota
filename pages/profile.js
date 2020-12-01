@@ -57,11 +57,11 @@ export default function Profile() {
   async function handleChangePassword(e){
     e.preventDefault();
 
-    const headers = { 'Authorization': `${localStorage.getItem('userId')}`};
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}`, 'oldPassword': oldPassword, 'newPassword': newPassword};
 
     try {
       if(newPassword === confirmPassword){
-        await api.put('/profile/new_password', { newPassword, oldPassword }, { headers });
+        await api.put('/profile/new_password', { headers });
         alert("Senha editada com sucesso!");
       }
       else{
@@ -69,7 +69,7 @@ export default function Profile() {
       }
     }
     catch (erro) {
-      alert(erro.response.data.error);
+      alert(erro.response.data);
     }
   }
 
@@ -132,7 +132,7 @@ export default function Profile() {
               />
             </div>
             <div className={styles.inputdiv} >
-              <label htmlFor="senha">Nova senha:</label>
+              <label htmlFor="senha">Nova senha: (Mínimo 8 caracteres)</label>
               <input 
                 type="password" 
                 name="senha" 
@@ -140,6 +140,7 @@ export default function Profile() {
                 value={newPassword}
                 onChange={e => setNewPassword(e.target.value)}
                 placeholder="Insira sua nova senha aqui"
+                minLength="8"
                 required
               />
             </div>
@@ -152,6 +153,7 @@ export default function Profile() {
                 value={confirmPassword}
                 onChange={e => setConfirmPassword(e.target.value)}
                 placeholder="Digite novamente sua nova senha aqui"
+                minLength="8"
                 required
               />
             </div>

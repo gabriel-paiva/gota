@@ -148,7 +148,7 @@ export default function Login() {
                   value={senhaCadastro}
                   onChange={e => setSenhaCadastro(e.target.value)}
                   placeholder="Insira sua senha aqui"
-                  minlength="8"
+                  minLength="8"
                   required
                 />
               </div>
