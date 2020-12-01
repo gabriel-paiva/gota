@@ -57,11 +57,10 @@ export default function Profile() {
   async function handleChangePassword(e){
     e.preventDefault();
 
-    const headers = { 'Authorization': `${localStorage.getItem('userId')}`, 'oldPassword': oldPassword, 'newPassword': newPassword};
-
+    const headers = { 'Authorization': `${localStorage.getItem('userId')}`};
     try {
       if(newPassword === confirmPassword){
-        await api.put('/profile/new_password', { headers });
+        await api.put('/profile/new_password', { oldPassword, newPassword }, { headers });
         alert("Senha editada com sucesso!");
       }
       else{

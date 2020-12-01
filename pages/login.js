@@ -33,12 +33,11 @@ export default function Login() {
     const userData = {
       name: nomeCadastro,
       email: emailCadastro,
+      senha: senhaCadastro
     };
 
-    const headers = { 'Authorization': senhaCadastro };
-
     try {
-      await api.post('/user', userData, { headers }).then(response => {
+      await api.post('/user', userData).then(response => {
         localStorage.setItem('userId', response.data.id.id);
         localStorage.setItem('userEmail', response.data.email);
         localStorage.setItem('userName', response.data.name);
@@ -57,12 +56,11 @@ export default function Login() {
 
     const userData = {
       email: emailLogin,
+      senha: senhaLogin
     }
 
-    const headers = { 'Authorization': senha };
-
     try {
-      await api.post('/login', userData, { headers }).then(response => {
+      await api.post('/login', userData).then(response => {
         localStorage.setItem('userId', response.data.id);
         localStorage.setItem('userEmail', response.data.email);
         localStorage.setItem('userName', response.data.name);
