@@ -78,7 +78,7 @@ export default function Chart() {
       <div className="container">
         <div className={styles.formdiv}>
           <h2>Gerar Gráfico</h2>
-          <form>
+          <form onSubmit={handleGerarGrafico}>
             <div className={styles.inputdiv}>
               <label htmlFor="inicio">Data inicial</label>
               <input
@@ -117,7 +117,7 @@ export default function Chart() {
               </select>
             </div>
 
-            <button onClick={handleGerarGrafico} type="submit" className="clicavel">Gerar gráfico</button>
+            <button type="submit" className="clicavel">Gerar gráfico</button>
           </form>
         </div>
         {renderGrafico}

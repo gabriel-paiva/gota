@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
 import apiContas from '../services/backendapi';
 import Image from 'next/image';
+import { useRouter } from 'next/router'
 
 import transformDate from '../utils/transformDate';
 import checaDataEntre from '../utils/checaDataEntre';
@@ -12,6 +13,7 @@ export default function Relatorio() {
   const [dataInicial, setDataInicial] = useState('');
   const [dataFinal, setDataFinal] = useState('');
   const [renderRelatorio, setRenderRelatorio] = useState(null);
+  const router = useRouter()
 
   let consumoTotal = 0;
   let valorTotal = 0;
@@ -103,6 +105,8 @@ export default function Relatorio() {
     window.print();
 
     document.body.innerHTML = originalContents;
+
+    router.reload();
   }
   return (
     <>
@@ -110,7 +114,7 @@ export default function Relatorio() {
       <div className="container">
         <div className={styles.formdiv}>
           <h2>Gerar Relatório</h2>
-          <form>
+          <form onSubmit={handleGerarRelatorio}>
             <div className={styles.inputdiv}>
               <label htmlFor="inicio">Data inicial</label>
               <input
@@ -119,7 +123,9 @@ export default function Relatorio() {
                 id="inicio"
                 value={dataInicial}
                 onChange={e => setDataInicial(e.target.value)}
+                placeholder="Insira a data inicial"
                 required
+                autoFocus
               />
             </div>
 
@@ -135,7 +141,7 @@ export default function Relatorio() {
               />
             </div>
 
-            <button onClick={handleGerarRelatorio} type="submit" className="clicavel">Gerar relatório</button>
+            <button type="submit" className="clicavel">Gerar relatório</button>
           </form>
         </div>
 
