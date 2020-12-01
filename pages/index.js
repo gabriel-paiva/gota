@@ -74,10 +74,10 @@ export default function Home() {
   }
 
   async function criarListaEmpresas(regiaoEscolhida) {
-    if(regiaoEscolhida){
+    if (regiaoEscolhida) {
       const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
       setListaDeEmpresas(novaListaDeEmpresas);
-    } 
+    }
   }
 
   async function getDadosDaEmpresa(nomeEmpresa) {
@@ -138,6 +138,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="keywords" content="gota, calculadora, contas, agua, esgoto, tarifa, calcular, gerenciador, online" />
+        <meta
+          name="description"
+          content="GOTA é a sua calculadora contas de água e esgoto. 
+            Calcule suas tarifas de água e esgoto com os dados mais atualizados das empresas de saneamento."
+        />
+        <meta name="robots" content="index, follow" />
       </Head>
       <Navbar />
       <div className="container">
