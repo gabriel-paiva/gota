@@ -69,7 +69,7 @@ export default function Login() {
       router.push('/userpage');
     }
     catch(erro){
-      alert(erro.response.data.message);
+      alert(erro.response.data);
     }
   }
 
