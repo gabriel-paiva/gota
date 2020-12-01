@@ -92,6 +92,7 @@ export default function Relatorio() {
           </div>
         </div>
         <button type="button" onClick={printDiv}>Salvar</button>
+        <p className={styles.avisodiv}>Aviso: escolha a opção de imprimir como PDF!</p>
       </div>
     );
   }
