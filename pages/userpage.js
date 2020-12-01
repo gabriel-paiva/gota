@@ -153,6 +153,10 @@ export default function Userpage() {
     router.push('/chart');
   }
 
+  function handleGerarRelatorio() {
+    router.push('/report');
+  }
+
   async function handleRecalcular(contaSalva) {
     let dadosAtualizados;
 
@@ -231,6 +235,7 @@ export default function Userpage() {
           </table>
           <div className={styles.buttonflex}>
             <button
+              onClick={handleGerarRelatorio}
               type="button"
               className="clicavel"
             >
