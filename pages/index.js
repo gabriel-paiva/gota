@@ -146,6 +146,7 @@ export default function Home() {
             Calcule suas tarifas de água e esgoto com os dados mais atualizados das empresas de saneamento."
         />
         <meta name="robots" content="index, follow" />
+        <meta name="google-site-verification" content="WGEv-yA_u2f1Q6XRWOOcKrMIBfAe7CLnXNZj8NJ0CQg" />
       </Head>
       <Navbar />
       <div className="container">
