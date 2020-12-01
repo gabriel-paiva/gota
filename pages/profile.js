@@ -69,7 +69,7 @@ export default function Profile() {
       }
     }
     catch (erro) {
-      alert(erro.response.data);
+      alert(erro.response.data.error);
     }
   }
 

@@ -1,7 +1,8 @@
 import styles from '../styles/Userpage.module.css';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { X, Edit } from 'react-feather';
+import { X, Edit, Repeat } from 'react-feather';
+
 
 import Navbar from '../components/Navbar';
 
@@ -9,7 +10,11 @@ import apiAgua from '../services/gotaapi';
 import apiContas from '../services/backendapi';
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
-import api from '../services/gotaapi';
+import transformDate from '../utils/transformDate';
+
+import escolheMunicipio from '../utils/escolheMunicipio';
+import escolheCategoria from '../utils/escolheCategoria';
+import calculaTarifa from '../utils/calculaTarifa';
 
 export default function Userpage() {
   const router = useRouter();
@@ -32,9 +37,9 @@ export default function Userpage() {
 
   let dados = {};
 
-  const [renderMunicipio, setRenderMunicipio] = useState(null);
+    const [renderMunicipio, setRenderMunicipio] = useState(null);
 
-  useEffect(() => {
+    useEffect(() => {
     const isLoged = localStorage.getItem('isLoged');
     if (!isLoged) {
       router.push('/login');
@@ -48,6 +53,7 @@ export default function Userpage() {
       setContasSalvas(response.data);
     });
   }, [contasSalvas]);
+
   async function criarListaEmpresas(regiaoEscolhida) {
     if (regiaoEscolhida) {
       const novaListaDeEmpresas = listaDeRegioes[regiaoEscolhida];
@@ -117,14 +123,6 @@ export default function Userpage() {
     }
   }
 
-  function transformDate(stringToTransform) {
-    let arrayOfStrings = stringToTransform.split("T");
-    let date = arrayOfStrings[0].split("-");
-    date = date.reverse()
-    let string = date[0] + "/" + date[1] + "/" + date[2];
-    return (string)
-  }
-
   async function handleUpdateStatus(status, id) {
     const headers = { 'Authorization': `${localStorage.getItem('userId')}`, 'id': id };
 
@@ -148,6 +146,48 @@ export default function Userpage() {
     }
     catch (erro) {
       alert(erro.response.data.message);
+    }
+  }
+
+  function handleGerarGrafico(){
+    router.push('/chart');
+  }
+
+  async function handleRecalcular(contaSalva){
+    let dadosAtualizados;
+
+    await apiAgua.get(`${contaSalva.regiao.toLowerCase()}/${contaSalva.empresa.toLowerCase()}`).then(response => {
+      dadosAtualizados = response.data;
+    });
+    
+    if (contaSalva.municipio === "todos") {
+      const dadosDaCategoria = escolheCategoria(dadosAtualizados.tarifas[0].categorias, contaSalva.categoria);
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixoAgua,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixoEsgoto,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
+    }
+    else {
+      const dadosDoMunicipio = escolheMunicipio(dadosAtualizados.tarifas, contaSalva.municipio);
+      const dadosDaCategoria = escolheCategoria(dadosDoMunicipio.categorias, contaSalva.categoria);
+      const tarifaAgua = await calculaTarifa(
+        dadosDaCategoria.valorFixoAgua,
+        dadosDaCategoria.aliquotasAgua,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+      const tarifaEsgoto = await calculaTarifa(
+        dadosDaCategoria.valorFixoEsgoto,
+        dadosDaCategoria.aliquotasEsgoto,
+        dadosDaCategoria.faixasDeConsumo,
+        contaSalva.consumo);
+        alert(`Calculando com as tarifas mais recentes do GOTA, sua tarifa seria de R$ ${tarifaAgua + tarifaEsgoto}, sendo R$ ${tarifaAgua} de água e R$ ${tarifaEsgoto} de esgoto.`);
     }
   }
 
@@ -177,18 +217,32 @@ export default function Userpage() {
               return (
                 <tr key={contaSalva.id}>
                   <td>{dataFormatada}</td>
-                  <td>R$ {contaSalva.valor}</td>
+                  <td>R$ {contaSalva.valor} <div className="tooltip"><Repeat onClick={e => handleRecalcular(contaSalva)} color="#6E9DC9" size={18} className="clicavel" /><span className="tooltiptext">Recalcular</span></div></td>
                   <td>{contaSalva.consumo} m³</td>
                   <td>{contaSalva.regiao.toUpperCase()}</td>
                   <td>{contaSalva.empresa}</td>
                   <td>{contaSalva.municipio === 'todos' ? 'N/A' : contaSalva.municipio}</td>
                   <td>{contaSalva.categoria}</td>
-                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<Edit onClick={e => handleUpdateStatus(contaSalva.status, contaSalva.id)} color="#6E9DC9" size={18} className="clicavel" /></td>
-                  <td><X color="#A60000" size={24} className="clicavel" onClick={e => handleDeleteBill(contaSalva.id)} /></td>
+                  <td>{contaSalva.status ? 'Pago ' : 'Pendente '}<div className="tooltip"><Edit onClick={e => handleUpdateStatus(contaSalva.status, contaSalva.id)} color="#6E9DC9" size={18} className="clicavel" /><span className="tooltiptext">Alterar status</span></div></td>
+                  <td ><div className="tooltip"><X color="#A60000" size={24} className="clicavel" onClick={e => handleDeleteBill(contaSalva.id)} /><span className="tooltiptext">Excluir conta</span></div></td>
                 </tr>
               );
             })}
           </table>
+          <button 
+            type="button" 
+            className="clicavel"
+          >
+            Gerar Relatório
+          </button>
+
+          <button 
+            onClick={handleGerarGrafico} 
+            type="button" 
+            className="clicavel"
+          >
+            Gerar Gráfico
+          </button>
         </div>
 
         <div className={styles.formdiv}>
@@ -298,10 +352,10 @@ export default function Userpage() {
                   <option key={nomeDaCategoria} value={nomeDaCategoria}>{nomeDaCategoria}</option>)}
               </select>
             </div>
-
             <button type="submit" className="clicavel">Salvar</button>
           </form>
         </div>
+
       </div>
     </>
   );

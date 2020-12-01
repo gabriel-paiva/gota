@@ -11,12 +11,14 @@ import styles from '../../styles/Navbar.module.css';
 export default function Navbar() {
   const router = useRouter();
   const [username, setUsername] = useState('');
+  const [currentRoute, setCurrentRoute] = useState('');
   const [isLoged, setIsLoged] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsLoged(localStorage.getItem('isLoged'));
       setUsername(localStorage.getItem('userName'));
+      setCurrentRoute(window.location.pathname);
     }
   }, [username, isLoged]);
 
@@ -34,33 +36,39 @@ export default function Navbar() {
       </Link>
       {isLoged &&
         <p>Olá, {username}!</p>}
-      <Link href="/">
-        <a>
+      {currentRoute !== '/' &&
+        <Link href="/">
+        <a className="tooltip">
           <Percent color="#6E9DC9" size={24} />
+          <span className="tooltiptext">Calculadora</span>
         </a>
-      </Link>
-      {isLoged &&
+      </Link>}
+      {isLoged && (currentRoute !== '/userpage') &&
         <Link href="/userpage">
-          <a>
+          <a className="tooltip">
             <User color="#6E9DC9" size={24} />
+            <span className="tooltiptext">Central do Usuário</span>
           </a>
         </Link>}
-      {isLoged &&
+      {isLoged && (currentRoute !== '/profile') &&
         <Link href="/profile">
-          <a>
+          <a className="tooltip">
             <Settings color="#6E9DC9" size={24} />
+            <span className="tooltiptext">Perfil</span>
           </a>
         </Link>}
-      {!isLoged &&
+      {!isLoged && (currentRoute !== '/login') &&
         <Link href="/login">
-          <a>
+          <a className="tooltip">
             <LogIn color="#6E9DC9" size={24} />
+            <span className="tooltiptext">Entrar</span>
           </a>
         </Link>}
       {isLoged &&
         <Link href="#" >
-          <a>
+          <a className="tooltip">
             <LogOut color="#6E9DC9" size={24} onClick={handleLogout} />
+            <span className="tooltiptext">Sair</span>
           </a>
         </Link>}
     </header>
