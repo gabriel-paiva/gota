@@ -140,7 +140,7 @@ export default function Login() {
                 />
               </div>
               <div className={styles.inputdiv}>
-                <label htmlFor="senha">Insira sua senha:</label>
+                <label htmlFor="senha">Insira sua senha: (Mínimo 8 caracteres)</label>
                 <input
                   type="password"
                   name="senha"
@@ -148,6 +148,7 @@ export default function Login() {
                   value={senhaCadastro}
                   onChange={e => setSenhaCadastro(e.target.value)}
                   placeholder="Insira sua senha aqui"
+                  minlength="8"
                   required
                 />
               </div>
