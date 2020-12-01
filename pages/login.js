@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import Navbar from '../components/Navbar';
 
@@ -8,6 +9,16 @@ import api from '../services/backendapi';
 import styles from '../styles/Login.module.css';
 
 export default function Login() {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const isLoged = localStorage.getItem('isLoged');
+    if(isLoged){
+      router.push('/');
+    }
+  }, []);
+
   // Variáveis de cadastro:
   const [nomeCadastro, setNomeCadastro] = useState('');
   const [emailCadastro, setEmailCadastro] = useState('');
@@ -15,8 +26,6 @@ export default function Login() {
   // Variáveis de Login:
   const [emailLogin, setEmailLogin] = useState('');
   const [senhaLogin, setSenhaLogin] = useState('');
-
-  const router = useRouter()
 
   async function handleCadastro(e){
     e.preventDefault();
@@ -29,7 +38,7 @@ export default function Login() {
 
     try {
       await api.post('/user', userData).then(response => {
-        localStorage.setItem('userId', response.data.id);
+        localStorage.setItem('userId', response.data.id.id);
         localStorage.setItem('userEmail', response.data.email);
         localStorage.setItem('userName', response.data.name);
         localStorage.setItem('isLoged', true);
@@ -60,7 +69,7 @@ export default function Login() {
       router.push('/userpage');
     }
     catch(erro){
-      alert(erro.response.data.message);
+      alert(erro.response.data);
     }
   }
 
@@ -94,6 +103,7 @@ export default function Login() {
                   value={senhaLogin}
                   onChange={e => setSenhaLogin(e.target.value)}
                   placeholder="Insira sua senha aqui"
+                  required
                 />
               </div>
               <button type="submit" className="clicavel">Login</button>
@@ -128,7 +138,7 @@ export default function Login() {
                 />
               </div>
               <div className={styles.inputdiv}>
-                <label htmlFor="senha">Insira sua senha:</label>
+                <label htmlFor="senha">Insira sua senha: (Mínimo 8 caracteres)</label>
                 <input
                   type="password"
                   name="senha"
@@ -136,6 +146,8 @@ export default function Login() {
                   value={senhaCadastro}
                   onChange={e => setSenhaCadastro(e.target.value)}
                   placeholder="Insira sua senha aqui"
+                  minLength="8"
+                  required
                 />
               </div>
               <button type="submit" className="clicavel">Cadastrar</button>

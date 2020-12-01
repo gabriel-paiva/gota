@@ -1,8 +1,16 @@
 .navbar {
   min-height: 80px;
+  min-width: 330px;
   background-color: #fff;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: #6E9DC9;
+}
+
+.navbar button {
+  text-decoration: none;
+  background: none;
+  border: none;
+  color: none;
 }
