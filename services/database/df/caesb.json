@@ -1,0 +1,132 @@
+{
+  "listaDeMunicipios": [
+    "todos"
+  ],
+  "listaDeCategorias": [
+    "Residencial Padrão",
+    "Residencial Social",
+    "Comercial, Industrial e Pública",
+    "Paisagismo"
+  ],
+  "tarifas": [
+    {
+      "ultimaModificacao": "01-06-2020",
+      "validoAte": "31-05-2021",
+      "municipios": [
+        "todos"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial Padrão",
+          "faixasDeConsumo": [
+            0,
+            7,
+            13,
+            20,
+            30,
+            45
+          ],
+          "valorFixoAgua": 8.0,
+          "valorFixoEsgoto": 8.0,
+          "aliquotasAgua": [
+            2.99,
+            3.59,
+            7.10,
+            10.66,
+            17.05,
+            23.87
+          ],
+          "aliquotasEsgoto": [
+            2.99,
+            3.59,
+            7.10,
+            10.66,
+            17.05,
+            23.87
+          ]
+        },
+        {
+          "nomeDaCategoria": "Residencial Social",
+          "faixasDeConsumo": [
+            0,
+            7,
+            13,
+            20,
+            30,
+            45
+          ],
+          "valorFixoAgua": 4.0,
+          "valorFixoEsgoto": 4.0,
+          "aliquotasAgua": [
+            1.49,
+            1.79,
+            3.55,
+            5.33,
+            17.05,
+            23.87
+          ],
+          "aliquotasEsgoto": [
+            1.49,
+            1.79,
+            3.55,
+            5.33,
+            17.05,
+            23.87
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial, Industrial e Pública",
+          "faixasDeConsumo": [
+            0,
+            4,
+            7,
+            10,
+            40
+          ],
+          "valorFixoAgua": 21.0,
+          "valorFixoEsgoto": 21.0,
+          "aliquotasAgua": [
+            6.14,
+            7.68,
+            9.98,
+            12.48,
+            14.97
+          ],
+          "aliquotasEsgoto": [
+            6.14,
+            7.68,
+            9.98,
+            12.48,
+            14.97
+          ]
+        },
+        {
+          "nomeDaCategoria": "Paisagismo",
+          "faixasDeConsumo": [
+            0,
+            4,
+            7,
+            10,
+            40
+          ],
+          "valorFixoAgua": 31.50,
+          "valorFixoEsgoto": 31.50,
+          "aliquotasAgua": [
+            9.21,
+            11.52,
+            14.97,
+            18.92,
+            22.46
+          ],
+          "aliquotasEsgoto": [
+            9.21,
+            11.52,
+            14.97,
+            18.92,
+            22.46
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "listaDeMunicipios": [
+    "Campo Grande"
+  ],
+  "listaDeCategorias": [
+    "Social",
+    "Residencial",
+    "Comercial",
+    "Industrial",
+    "Poder Público"
+  ],
+  "tarifas": [
+    {
+      "ultimaModificacao": "01-01-2020",
+      "validoAte": "indefinido",
+      "municipios": [
+        "Campo Grande"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Social",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoAgua": 5.80,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            2.35,
+            2.35
+          ],
+          "aliquotasEsgoto": [
+            1.65,
+            1.65
+          ]
+        },
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoAgua": 12.79,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            5.16,
+            6.61,
+            6.74,
+            7.43,
+            9.15,
+            10.97,
+            12.07
+          ],
+          "aliquotasEsgoto": [
+            3.61,
+            4.63,
+            4.72,
+            5.20,
+            6.41,
+            7.68,
+            8.45
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 19.39,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            7.12,
+            14.60
+          ],
+          "aliquotasEsgoto": [
+            4.98,
+            10.22
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 30.48,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            11.14,
+            21.44
+          ],
+          "aliquotasEsgoto": [
+            7.80,
+            15.01
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoAgua": 64.70,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            6.49,
+            26.87
+          ],
+          "aliquotasEsgoto": [
+            4.54,
+            18.81
+          ]
+        }
+      ]
+    }
+  ]
+}

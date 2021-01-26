@@ -1,0 +1,694 @@
+{
+  "listaDeMunicipios": [
+    "Alcinópolis",
+    "Amambai",
+    "Anastácio",
+    "Anaurilândia",
+    "Angélica",
+    "Antônio João",
+    "Aquidauana",
+    "Aral Moreira",
+    "Batayporã",
+    "Bodoquena",
+    "Bonito",
+    "Caarapó",
+    "Camapuã",
+    "Caracol",
+    "Chapadão do Sul",
+    "Coronel Sapucaia",
+    "Corumbá",
+    "Deodápolis",
+    "Dois Irmãos do Buriti",
+    "Douradina",
+    "Dourados",
+    "Eldorado",
+    "Fátima do Sul",
+    "Figueirão",
+    "Guia Lopes da Laguna",
+    "Iguatemi",
+    "Inocência",
+    "Itaporã",
+    "Itaquiraí",
+    "Ivinhema",
+    "Japorã",
+    "Jardim",
+    "Jateí",
+    "Juti",
+    "Laguna Carapã",
+    "Maracaju",
+    "Miranda",
+    "Mundo Novo",
+    "Naviraí",
+    "Nioaque",
+    "Nova Alvorada do Sul",
+    "Nova Andradina",
+    "Novo Horizote do Sul",
+    "Paranaíba",
+    "Paranhos",
+    "Pedro Gomes",
+    "Ponta Porã",
+    "Porto Murtinho",
+    "Ribas do Rio Pardo",
+    "Rio Brilhante",
+    "Rio Negro",
+    "Rio Verde de Mato Gross",
+    "Sete Quedas",
+    "Sidrolândia",
+    "Sonora",
+    "Tacuru",
+    "Taquarussu",
+    "Terenos",
+    "Vicentina",
+    "Água Clara",
+    "Bataguassu",
+    "Brasilândia",
+    "Santa Rita do Pardo",
+    "Selvíria",
+    "Três Lagoas",
+    "Coxim",
+    "Aparecida do Taboado",
+    "Ladário"
+  ],
+  "listaDeCategorias": [
+    "Residencial",
+    "Comercial",
+    "Industrial",
+    "Poder Público"
+  ],
+  "tarifas": [
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Alcinópolis",
+        "Amambai",
+        "Anastácio",
+        "Anaurilândia",
+        "Angélica",
+        "Antônio João",
+        "Aquidauana",
+        "Aral Moreira",
+        "Batayporã",
+        "Bodoquena",
+        "Bonito",
+        "Caarapó",
+        "Camapuã",
+        "Caracol",
+        "Chapadão do Sul",
+        "Coronel Sapucaia",
+        "Corumbá",
+        "Deodápolis",
+        "Dois Irmãos do Buriti",
+        "Douradina",
+        "Dourados",
+        "Eldorado",
+        "Fátima do Sul",
+        "Figueirão",
+        "Guia Lopes da Laguna",
+        "Iguatemi",
+        "Inocência",
+        "Itaporã",
+        "Itaquiraí",
+        "Ivinhema",
+        "Japorã",
+        "Jardim",
+        "Jateí",
+        "Juti",
+        "Laguna Carapã",
+        "Maracaju",
+        "Miranda",
+        "Mundo Novo",
+        "Naviraí",
+        "Nioaque",
+        "Nova Alvorada do Sul",
+        "Nova Andradina",
+        "Novo Horizote do Sul",
+        "Paranaíba",
+        "Paranhos",
+        "Pedro Gomes",
+        "Ponta Porã",
+        "Porto Murtinho",
+        "Ribas do Rio Pardo",
+        "Rio Brilhante",
+        "Rio Negro",
+        "Rio Verde de Mato Gross",
+        "Sete Quedas",
+        "Sidrolândia",
+        "Sonora",
+        "Tacuru",
+        "Taquarussu",
+        "Terenos",
+        "Vicentina"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            4.71,
+            6.04,
+            6.26,
+            6.69,
+            8.42,
+            9.98,
+            11.02
+          ],
+          "aliquotasEsgoto":[
+            2.36,
+            3.00,
+            3.12,
+            3.36,
+            4.22,
+            5.01,
+            5.52
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.41,
+            13.30
+          ],
+          "aliquotasEsgoto":[
+           3.21,
+           6.65
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            10.07,
+            19.42
+          ],
+          "aliquotasEsgoto":[
+            5.05,
+            9.69
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.53,
+            27.15
+          ],
+          "aliquotasEsgoto":[
+           3.26,
+           13.58
+          ]
+        }
+      ]
+    },
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Água Clara",
+        "Bataguassu",
+        "Brasilândia",
+        "Santa Rita do Pardo",
+        "Selvíria"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 8.65,
+          "aliquotasAgua": [
+            4.41,
+            5.57,
+            5.95,
+            6.64,
+            6.85,
+            8.24,
+            8.55
+          ],
+          "aliquotasEsgoto":[
+            2.2,
+            2.8,
+            2.98,
+            3.31,
+            3.42,
+            4.12,
+            4.26
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 8.65,
+          "aliquotasAgua": [
+            5.46,
+            11.83
+          ],
+          "aliquotasEsgoto":[
+            2.73,
+            5.92
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 8.65,
+          "aliquotasAgua": [
+            8.24,
+            17.58
+          ],
+          "aliquotasEsgoto":[
+           4.12,
+           8.78
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 8.65,
+          "aliquotasAgua": [
+            5.71,
+            23.31
+          ],
+          "aliquotasEsgoto":[
+           2.85,
+           11.64
+          ]
+        }
+      ]
+    },
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Três Lagoas"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 4.35,
+          "aliquotasAgua": [
+            4.46,
+            5.64,
+            6.01,
+            6.69,
+            6.91,
+            8.32,
+            8.65
+          ],
+          "aliquotasEsgoto":[
+            2.23,
+            2.82,
+            3.01,
+            3.34,
+            3.46,
+            4.16,
+            4.32
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 4.35,
+          "aliquotasAgua": [
+            5.53,
+            11.95
+          ],
+          "aliquotasEsgoto":[
+            2.76,
+            5.97
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 4.35,
+          "aliquotasAgua": [
+            8.32,
+            17.75
+          ],
+          "aliquotasEsgoto":[
+            4.16,
+            8.86
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 4.35,
+          "aliquotasAgua": [
+            5.76,
+            23.53
+          ],
+          "aliquotasEsgoto":[
+            2.89,
+            11.77
+          ]
+        }
+      ]
+    },
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Coxim"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            4.71,
+            6.04,
+            6.26,
+            6.69,
+            8.42,
+            9.98,
+            11.02
+          ],
+          "aliquotasEsgoto":[
+            2.41,
+            2.87,
+            3.29,
+            3.82,
+            4.50,
+            4.59,
+            4.70
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.41,
+            13.30
+          ],
+          "aliquotasEsgoto":[
+            4.5,
+            4.5
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            10.07,
+            19.42
+          ],
+          "aliquotasEsgoto":[
+            5.87,
+            5.87
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.52,
+            27.15
+          ],
+          "aliquotasEsgoto":[
+            4.37,
+            8.80
+          ]
+        }
+      ]
+    },
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Aparecida do Taboado"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            4.71,
+            6.04,
+            6.26,
+            6.69,
+            8.42,
+            9.98,
+            11.02
+          ],
+          "aliquotasEsgoto":[
+            3.31,
+            4.23,
+            4.38,
+            4.70,
+            5.89,
+            7.00,
+            7.72
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.41,
+            13.30
+          ],
+          "aliquotasEsgoto":[
+            4.50,
+            9.31
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            10.07,
+            19.42
+          ],
+          "aliquotasEsgoto":[
+            7.05,
+            13.60
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.52,
+            27.15
+          ],
+          "aliquotasEsgoto":[
+            4.59,
+            18.98
+          ]
+        }
+      ]
+    },
+    {
+      "ultimaModificacao": "01-09-2020",
+      "validoAte": "30-06-2021",
+      "municipios": [
+        "Ladário"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            50
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            4.71,
+            6.04,
+            6.26,
+            6.69,
+            8.42,
+            9.98,
+            11.02
+          ],
+          "aliquotasEsgoto":[
+            2.36,
+            3.00,
+            3.12,
+            3.36,
+            4.22,
+            5.01,
+            5.52
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.41,
+            13.30
+          ],
+          "aliquotasEsgoto":[
+            3.21,
+            6.65
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            10.07,
+            19.42
+          ],
+          "aliquotasEsgoto":[
+            5.05,
+            9.69
+          ]
+        },
+        {
+          "nomeDaCategoria": "Poder Público",
+          "faixasDeConsumo": [
+            0,
+            20
+          ],
+          "valorFixoEsgoto": 0.0,
+          "valorFixoAgua": 0.0,
+          "aliquotasAgua": [
+            6.52,
+            27.15
+          ],
+          "aliquotasEsgoto":[
+            3.26,
+            13.58
+          ]
+        }
+      ]
+    }
+  ]
+}

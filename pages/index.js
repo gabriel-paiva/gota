@@ -7,7 +7,6 @@ import Resultado from '../components/Resultado';
 import styles from '../styles/Home.module.css'
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
-import api from '../services/gotaapi';
 import escolheCategoria from '../utils/escolheCategoria';
 import escolheMunicipio from '../utils/escolheMunicipio';
 import calculaTarifa from '../utils/calculaTarifa';
@@ -83,9 +82,7 @@ export default function Home() {
   async function getDadosDaEmpresa(nomeEmpresa) {
     nomeEmpresa = nomeEmpresa.toLowerCase();
 
-    await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
-      dados = response.data;
-    });
+    dados = require(`../services/database/${regiao}/${nomeEmpresa}.json`);
 
     setDadosEmpresa(dados);
     setListaDeMunicipios(dados.listaDeMunicipios);
