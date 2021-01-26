@@ -7,6 +7,7 @@ import Resultado from '../components/Resultado';
 import styles from '../styles/Home.module.css'
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
+import trataString from '../utils/trataString.js'
 import escolheCategoria from '../utils/escolheCategoria';
 import escolheMunicipio from '../utils/escolheMunicipio';
 import calculaTarifa from '../utils/calculaTarifa';
@@ -80,9 +81,10 @@ export default function Home() {
   }
 
   async function getDadosDaEmpresa(nomeEmpresa) {
-    nomeEmpresa = nomeEmpresa.toLowerCase();
+    const nomeTratadoEmpresa = trataString(nomeEmpresa);
 
-    dados = require(`../services/database/${regiao}/${nomeEmpresa}.json`);
+
+    dados = require(`../services/database/${regiao}/${nomeTratadoEmpresa}.json`);
 
     setDadosEmpresa(dados);
     setListaDeMunicipios(dados.listaDeMunicipios);
