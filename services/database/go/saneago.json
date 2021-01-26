@@ -1,0 +1,150 @@
+{
+  "listaDeMunicipios": [
+    "todos"
+  ],
+  "listaDeCategorias": [
+    "Residencial Social",
+    "Residencial Normal",
+    "Pública",
+    "Industrial",
+    "Comercial I",
+    "Comercial II"
+  ],
+  "tarifas": [
+    {
+      "ultimaModificacao": "01-07-2019",
+      "validoAte": "indefinido",
+      "municipios": [
+        "todos"
+      ],
+      "categorias": [
+        {
+          "nomeDaCategoria": "Residencial Social",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20
+          ],
+          "valorFixoAgua": 6.36,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            2.10,
+            2.37,
+            2.71,
+            2.71
+          ],
+          "aliquotasEsgoto": [
+            2.10,
+            2.37,
+            2.71,
+            2.71
+          ]
+        },
+        {
+          "nomeDaCategoria": "Residencial Normal",
+          "faixasDeConsumo": [
+            0,
+            10,
+            15,
+            20,
+            25,
+            30,
+            40,
+            50
+          ],
+          "valorFixoAgua": 13.45,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            4.44,
+            5.03,
+            5.74,
+            6.52,
+            7.36,
+            8.40,
+            9.50,
+            10.83
+          ],
+          "aliquotasEsgoto": [
+            4.44,
+            5.03,
+            5.75,
+            6.51,
+            7.36,
+            8.40,
+            9.50,
+            10.84
+          ]
+        },
+        {
+          "nomeDaCategoria": "Pública",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 13.45,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            8.40,
+            9.50
+          ],
+          "aliquotasEsgoto": [
+            8.40,
+            9.50
+          ]
+        },
+        {
+          "nomeDaCategoria": "Industrial",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 13.45,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            9.50,
+            10.83
+          ],
+          "aliquotasEsgoto": [
+            9.50,
+            10.84
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial I",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 13.45,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            9.50,
+            10.83
+          ],
+          "aliquotasEsgoto": [
+            9.50,
+            10.84
+          ]
+        },
+        {
+          "nomeDaCategoria": "Comercial II",
+          "faixasDeConsumo": [
+            0,
+            10
+          ],
+          "valorFixoAgua": 6.72,
+          "valorFixoEsgoto": 0,
+          "aliquotasAgua": [
+            4.75,
+            4.75
+          ],
+          "aliquotasEsgoto": [
+            4.75,
+            4.75
+          ]
+        }
+      ]
+    }
+  ]
+}

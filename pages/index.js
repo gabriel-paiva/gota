@@ -7,7 +7,7 @@ import Resultado from '../components/Resultado';
 import styles from '../styles/Home.module.css'
 
 import listaDeRegioes from '../utils/listaDeEmpresas.json';
-import api from '../services/gotaapi';
+import trataString from '../utils/trataString.js'
 import escolheCategoria from '../utils/escolheCategoria';
 import escolheMunicipio from '../utils/escolheMunicipio';
 import calculaTarifa from '../utils/calculaTarifa';
@@ -81,11 +81,10 @@ export default function Home() {
   }
 
   async function getDadosDaEmpresa(nomeEmpresa) {
-    nomeEmpresa = nomeEmpresa.toLowerCase();
+    const nomeTratadoEmpresa = trataString(nomeEmpresa);
 
-    await api.get(`${regiao}/${nomeEmpresa}`).then(response => {
-      dados = response.data;
-    });
+
+    dados = require(`../services/database/${regiao}/${nomeTratadoEmpresa}.json`);
 
     setDadosEmpresa(dados);
     setListaDeMunicipios(dados.listaDeMunicipios);
@@ -150,9 +149,9 @@ export default function Home() {
       </Head>
       <Navbar />
       <div className="container">
-        <h1>Gerenciador Online de Tarifas de Água</h1>
+        {/* <h1>Gerenciador Online de Tarifas de Água</h1> */}
         <div className={styles.formdiv}>
-          <h2>Calculadora de Tarifas de Água</h2>
+          <h1>Calculadora de Tarifas de Água</h1>
           <form onSubmit={trataDados}>
             <div className={styles.inputdiv} >
               <label htmlFor="regiao">Região:</label>
