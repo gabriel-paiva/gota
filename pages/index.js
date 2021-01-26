@@ -150,9 +150,9 @@ export default function Home() {
       </Head>
       <Navbar />
       <div className="container">
-        <h1>Gerenciador Online de Tarifas de Água</h1>
+        {/* <h1>Gerenciador Online de Tarifas de Água</h1> */}
         <div className={styles.formdiv}>
-          <h2>Calculadora de Tarifas de Água</h2>
+          <h1>Calculadora de Tarifas de Água</h1>
           <form onSubmit={trataDados}>
             <div className={styles.inputdiv} >
               <label htmlFor="regiao">Região:</label>
